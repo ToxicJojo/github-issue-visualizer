@@ -1,0 +1,19 @@
+{
+  "name": "github-issue-visualizer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ToxicJojo/github-issue-visualizer.git"
+  },
+  "author": "Johannes Thiel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ToxicJojo/github-issue-visualizer/issues"
+  },
+  "homepage": "https://github.com/ToxicJojo/github-issue-visualizer#readme"
+}
