@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack-dev-server --config config/webpack.dev.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,23 @@
   "bugs": {
     "url": "https://github.com/ToxicJojo/github-issue-visualizer/issues"
   },
-  "homepage": "https://github.com/ToxicJojo/github-issue-visualizer#readme"
+  "homepage": "https://github.com/ToxicJojo/github-issue-visualizer#readme",
+  "devDependencies": {
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^0.28.11",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.9.0",
+    "pug": "^2.0.3",
+    "pug-plain-loader": "^1.0.0",
+    "sass-loader": "^7.0.1",
+    "style-loader": "^0.21.0",
+    "vue": "^2.5.16",
+    "vue-loader": "^15.0.9",
+    "vue-template-compiler": "^2.5.16",
+    "webpack": "^4.7.0",
+    "webpack-build-notifier": "^0.1.25",
+    "webpack-cli": "^2.1.2",
+    "webpack-dev-server": "^3.1.4",
+    "webpack-merge": "^4.1.2"
+  }
 }
