@@ -15,8 +15,10 @@ const filterStateClosed = (issues) => {
   return filterState(issues, STATE_CLOSED)
 }
 
-module.exports.filterState = filterState
-module.exports.filterStateOpen = filterStateOpen
-module.exports.filterStateClosed = filterStateClosed
-module.exports.STATE_OPEN = STATE_OPEN
-module.exports.STATE_CLOSED = STATE_CLOSED
+export default {
+  filterState,
+  filterStateOpen,
+  filterStateClosed,
+  STATE_OPEN,
+  STATE_CLOSED,
+}
