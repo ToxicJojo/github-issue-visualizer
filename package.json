@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --config config/webpack.dev.js"
+    "dev": "webpack-dev-server --config config/webpack.dev.js",
+    "test": "mocha --recursive --require babel-register"
   },
   "repository": {
     "type": "git",
@@ -17,9 +18,18 @@
   },
   "homepage": "https://github.com/ToxicJojo/github-issue-visualizer#readme",
   "devDependencies": {
+    "@octokit/rest": "^15.2.7",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.11",
     "html-webpack-plugin": "^3.2.0",
+    "mocha": "^5.1.1",
     "node-sass": "^4.9.0",
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
@@ -33,5 +43,8 @@
     "webpack-cli": "^2.1.2",
     "webpack-dev-server": "^3.1.4",
     "webpack-merge": "^4.1.2"
+  },
+  "babel": {
+    "presets": ["env"]
   }
 }
