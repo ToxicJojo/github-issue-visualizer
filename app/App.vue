@@ -11,13 +11,14 @@
 <script>
 import getIssues from './js/get-issues'
 import Node from './components/Node.vue'
+import testData from '../test/data/test-data.json'
 
 export default {
   name: 'App',
   data () {
     return {
       repository: '',
-      issues: [],
+      issues: testData, 
       error: null,
     }
   },

@@ -4,6 +4,7 @@
       span {{issues.length}}
       p Issues
       button(@click='addFilter') Add Filter
+      button(@click='addSplitter') Add Splitter
     .node-childs
       Node(v-for='child in children' :issues='child.issues')
 
@@ -11,6 +12,8 @@
 
 <script>
 import filter from '../js/filter'
+import splitter  from '../js/splitter'
+
 
 export default {
   name: 'Node',
@@ -23,6 +26,9 @@ export default {
   methods: {
     addFilter () {
       this.filter = filter.state.filterStateOpen
+    },
+    addSplitter () {
+      this.splitter = splitter.state.splitState
     }
   },
   computed: {
@@ -34,7 +40,9 @@ export default {
           issues: filterdIssues,
         }]
       } else if (this.splitter) {
+        const splitIssues = this.splitter(this.issues)
 
+        return splitIssues
       }
 
       return null
@@ -51,7 +59,7 @@ export default {
 .node {
   display: flex;
   flex-direction: column;
-
+  flex-grow: 1;
   align-items: center;
 }
 
@@ -71,8 +79,9 @@ export default {
 
 .node-childs {
   display: flex;
-
   justify-content: space-around;
+
+  width: 100%;
 }
 
 </style>
