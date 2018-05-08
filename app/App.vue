@@ -4,21 +4,23 @@
     button(@click='loadIssues') Load Issues
     span.error-message {{ error }}
     
-    Node(:issues='issues')
+    Node(:issues='issues' :meta='{ name: "Issuses" }')
 
 </template>
 
 <script>
-import getIssues from './js/get-issues'
+import githubApi from './js/api'
 import Node from './components/Node.vue'
 import testData from '../test/data/test-data.json'
+import testLabels from '../test/data/test-labels.json'
 
 export default {
   name: 'App',
   data () {
     return {
       repository: '',
-      issues: testData, 
+      issues: testData,
+      labels: testLabels,
       error: null,
     }
   },
@@ -27,9 +29,11 @@ export default {
       const params = this.repository.split('/')
       const owner = params[0]
       const repo = params[1]
+
       try {
         this.error = null
-        this.issues = await getIssues(owner, repo);
+        this.issues = await githubApi.getIssues(owner, repo)
+        this.labels = await githubApi.getLabels(owner, repo)
       } catch (e) {
         this.error = 'Repository not found.'
       }

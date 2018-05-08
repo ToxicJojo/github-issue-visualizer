@@ -2,11 +2,14 @@
   .node
     .node-content
       span {{issues.length}}
-      p Issues
-      button(@click='addFilter') Add Filter
+      p {{ meta.name }}
+      select(v-model='selectedFilter.method')
+        option(diabled value='null') Select a filter
+        option(v-for='filter in filterList' :value='filter.filter')
+          span {{ filter.name }}
       button(@click='addSplitter') Add Splitter
     .node-childs
-      Node(v-for='child in children' :issues='child.issues')
+      Node(v-for='child in children' :issues='child.issues' :meta='child.meta')
 
 </template>
 
@@ -14,33 +17,44 @@
 import filter from '../js/filter'
 import splitter  from '../js/splitter'
 
+import testLabels from '../../test/data/test-labels'
 
 export default {
   name: 'Node',
   data () {
     return {
-      filter: null,
-      splitter: null,
+      selectedFilter: {
+        method: null,
+        args: [],
+      },
+      splitter: {
+        method: null,
+        args: [testLabels],
+      },
+      filterList: filter.filterList,
     }
   },
   methods: {
     addFilter () {
-      this.filter = filter.state.filterStateOpen
+      this.selectedFilter = filter.state.filterStateOpen
     },
     addSplitter () {
-      this.splitter = splitter.state.splitState
+      this.splitter.method = splitter.label.splitLabel
     }
   },
   computed: {
     children () {
-      if (this.filter) {
-        const filterdIssues = this.filter(this.issues)
+      if (this.selectedFilter.method) {
+        const filterdIssues = this.selectedFilter.method(this.issues, ...this.selectedFilter.args)
 
         return [{
+          meta: {
+            name: 'Open Issues'
+          },
           issues: filterdIssues,
         }]
-      } else if (this.splitter) {
-        const splitIssues = this.splitter(this.issues)
+      } else if (this.splitter.method) {
+        const splitIssues = this.splitter.method(this.issues, ...this.splitter.args)
 
         return splitIssues
       }
@@ -50,6 +64,7 @@ export default {
   },
   props: [
     'issues',
+    'meta',
   ]
 }
 </script>

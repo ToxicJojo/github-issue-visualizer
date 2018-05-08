@@ -1,0 +1,79 @@
+[
+  {
+    "id": 851751429,
+    "url": "https://api.github.com/repos/ToxicJojo/mkdesign/labels/bug",
+    "name": "bug",
+    "color": "d73a4a",
+    "default": true
+  },
+  {
+    "id": 851751430,
+    "url": "https://api.github.com/repos/ToxicJojo/mkdesign/labels/duplicate",
+    "name": "duplicate",
+    "color": "cfd3d7",
+    "default": true
+  },
+  {
+    "id": 851751431,
+    "url": "https://api.github.com/repos/ToxicJojo/mkdesign/labels/enhancement",
+    "name": "enhancement",
+    "color": "a2eeef",
+    "default": true
+  },
+  {
+    "id": 851751433,
+    "url": "https://api.github.com/repos/ToxicJojo/mkdesign/labels/good%20first%20issue",
+    "name": "good first issue",
+    "color": "7057ff",
+    "default": true
+  },
+  {
+    "id": 851751432,
+    "url": "https://api.github.com/repos/ToxicJojo/mkdesign/labels/help%20wanted",
+    "name": "help wanted",
+    "color": "008672",
+    "default": true
+  },
+  {
+    "id": 851751434,
+    "url": "https://api.github.com/repos/ToxicJojo/mkdesign/labels/invalid",
+    "name": "invalid",
+    "color": "e4e669",
+    "default": true
+  },
+  {
+    "id": 851751435,
+    "url": "https://api.github.com/repos/ToxicJojo/mkdesign/labels/question",
+    "name": "question",
+    "color": "d876e3",
+    "default": true
+  },
+  {
+    "id": 856838683,
+    "url": "https://api.github.com/repos/ToxicJojo/mkdesign/labels/wizard:bug",
+    "name": "wizard:bug",
+    "color": "b60205",
+    "default": false
+  },
+  {
+    "id": 856838854,
+    "url": "https://api.github.com/repos/ToxicJojo/mkdesign/labels/wizard:change",
+    "name": "wizard:change",
+    "color": "1d76db",
+    "default": false
+  },
+  {
+    "id": 856838505,
+    "url": "https://api.github.com/repos/ToxicJojo/mkdesign/labels/wizard:new",
+    "name": "wizard:new",
+    "color": "0e8a16",
+    "default": false
+  },
+  {
+    "id": 851751437,
+    "url": "https://api.github.com/repos/ToxicJojo/mkdesign/labels/wontfix",
+    "name": "wontfix",
+    "color": "ffffff",
+    "default": true
+  }
+]
