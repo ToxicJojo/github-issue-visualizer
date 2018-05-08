@@ -2,12 +2,14 @@
   .app
     input(v-model='repository' type='text' placeholder='owner/repo')
     button(@click='loadIssues') Load Issues
-    ul
-      li(v-for='issue in issues') {{ issue.title }}
+    
+    Node(:issues='issues')
+
 </template>
 
 <script>
 import getIssues from './js/get-issues'
+import Node from './components/Node.vue'
 
 export default {
   name: 'App',
@@ -27,6 +29,9 @@ export default {
       console.log(this.issues)
     }
   },
+  components: {
+    Node,
+  }
 }
 </script>
 

@@ -5,7 +5,7 @@ const WebpackBuildNotifierPlugin = require('webpack-build-notifier')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports =  {
-  entry: './app/index.js',
+  entry: ['babel-polyfill', './app/index.js'],
   output: {
     path: __dirname + '/../dist',
     filename: 'bundle.js',
