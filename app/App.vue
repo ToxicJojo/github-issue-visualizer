@@ -2,6 +2,7 @@
   .app
     input(v-model='repository' type='text' placeholder='owner/repo')
     button(@click='loadIssues') Load Issues
+    span.error-message {{ error }}
     
     Node(:issues='issues')
 
@@ -17,6 +18,7 @@ export default {
     return {
       repository: '',
       issues: [],
+      error: null,
     }
   },
   methods: {
@@ -24,9 +26,12 @@ export default {
       const params = this.repository.split('/')
       const owner = params[0]
       const repo = params[1]
-
-      this.issues = await getIssues(owner, repo);
-      console.log(this.issues)
+      try {
+        this.error = null
+        this.issues = await getIssues(owner, repo);
+      } catch (e) {
+        this.error = 'Repository not found.'
+      }
     }
   },
   components: {
@@ -36,5 +41,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.error-message {
+  color: red;
+}
 
 </style>

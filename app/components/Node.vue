@@ -48,6 +48,13 @@ export default {
 
 <style lang="scss" scoped>
 
+.node {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
 .node-content {
   display: flex;
   flex-direction: column;
