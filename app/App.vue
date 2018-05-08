@@ -33,7 +33,7 @@ export default {
       try {
         this.error = null
         this.issues = await githubApi.getIssues(owner, repo)
-        this.labels = await githubApi.getLabels(owner, repo)
+        this.$store.dispatch('labels/loadLabels', { owner, repo })
       } catch (e) {
         this.error = 'Repository not found.'
       }
