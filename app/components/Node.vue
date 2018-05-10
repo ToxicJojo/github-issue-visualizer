@@ -25,7 +25,7 @@ export default {
     return {
       selectedFilter: {
         method: null,
-        args: [],
+        args: [856838505],
       },
       splitter: {
         method: null,

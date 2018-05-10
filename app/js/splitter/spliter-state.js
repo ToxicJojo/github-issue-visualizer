@@ -8,10 +8,11 @@ const splitState = (issues) => {
   const groupOpen = createGroup(filter.state.STATE_OPEN, openIssues)
   const groupClosed = createGroup(filter.state.STATE_CLOSED, closedIssues)
 
-  return [
+  /*return [
     groupOpen,
     groupClosed,
-  ]
+  ]*/
+  return [openIssues, closedIssues]
 }
 
 export default {
