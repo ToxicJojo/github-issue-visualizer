@@ -62,7 +62,11 @@ export default {
   watch: {
     computedIssues () {
       forceGraph.updateNodes(this.computedIssues)
-    }
+    },
+    initialIssues () {
+      this.issues = this.initialIssues
+      forceGraph.init(this.computedIssues, this.updateNodes)
+    },
   },
   props: [
     'initialIssues',

@@ -51,7 +51,7 @@ export default {
   padding: 20px;
   height: 100px;
 
-  .field {
+    .field {
     margin: 0px 10px;
   }
 }

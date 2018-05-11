@@ -20,16 +20,16 @@ export default {
   name: 'App',
   data () {
     return {
-      repository: '',
-      labels: testLabels,
-      error: null,
     }
   },
   computed: {
     issues () {
-      //return this.$store.state.repository.issues
-      return testData
+      return this.$store.state.repository.issues
+      //return testData
     },
+  },
+  beforeMount () {
+    this.$store.commit('repository/setIssues', testData)
   },
   components: {
     Navbar,
