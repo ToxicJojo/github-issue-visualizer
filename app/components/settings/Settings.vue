@@ -3,11 +3,14 @@
     button(@click='addFilterStateOpen') Add Filter State open
     button(@click='addFilterStateClosed') Add Filter State closed
     button(@click='addSpliterState') Add Splitter State
+    LabelCheckboxes
 </template>
 
 <script>
-import splitter  from '../js/splitter'
-import filter  from '../js/filter'
+import splitter  from '../../js/splitter'
+import filter  from '../../js/filter'
+
+import LabelCheckboxes from './LabelCheckboxes.vue'
 
 export default {
   name: 'Settings',
@@ -33,6 +36,9 @@ export default {
       })
     }
   },
+  components: {
+    LabelCheckboxes,
+  }
 }
 </script>
 

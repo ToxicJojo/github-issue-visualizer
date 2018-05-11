@@ -13,7 +13,7 @@
 <script>
 import Navbar from './components/Navbar.vue'
 import IssueGraph from './components/IssueGraph.vue'
-import Settings from './components/Settings.vue'
+import Settings from './components/settings/Settings.vue'
 
 
 import githubApi from './js/api'
