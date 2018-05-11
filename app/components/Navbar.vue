@@ -1,7 +1,8 @@
 <template lang='pug'>
   .navbar
-    input(type='text' placeholder='owner/repo' v-model='repository')
-    button(@click='loadRepository') Load Issues
+    b-field(:message='errorMessage' :type='errorMessage ? "is-danger" : ""')
+      b-input(@keyup.enter.native='loadRepository' type='text' placeholder='owner/repo' v-model='repositoryInput' rounded)
+    a.button.is-primary.is-rounded(@click='loadRepository' :class='{ "is-loading": loading }') Load Issues
 
 
 </template>
@@ -11,21 +12,49 @@ export default {
   name: 'Navbar',
   data () {
     return {
-      repository: '',
+      repositoryInput: '',
+      loading: false,
+      errorMessage: null,
     }
   },
   methods: {
-    loadRepository () {
-      const params = this.repository.split('/')
+    async loadRepository () {
+      // Get the owner and repo parts of the input field
+      const params = this.repositoryInput.split('/')
       const owner = params[0]
       const repo = params[1]
       // Load issues and labels
-      this.$store.dispatch('repository/loadIssues', { owner, repo })
-      this.$store.dispatch('repository/loadLabels', { owner, repo })
+      try {
+        // Reset loading and error state
+        this.loading = true
+        this.errorMessage = null,
+        // Load issues and labels for the repository
+        await this.$store.dispatch('repository/loadIssues', { owner, repo })
+        await this.$store.dispatch('repository/loadLabels', { owner, repo })
+      } catch (e) {
+        // TODO Handle different types of errors and show meaningfull error messages
+        this.errorMessage = 'Could not load repository'
+      } finally {
+        this.loading = false
+      }
     },
   },
 }
 </script>
 
 <style lang="scss" scoped>
+
+.navbar {
+  display: flex;
+  justify-content: center;
+
+  padding: 20px;
+  height: 100px;
+
+  .field {
+    margin: 0px 10px;
+  }
+}
+
+
 </style>
