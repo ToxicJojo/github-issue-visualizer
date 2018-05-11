@@ -52,5 +52,8 @@
     "presets": [
       "env"
     ]
+  },
+  "dependencies": {
+    "buefy": "^0.6.5"
   }
 }
