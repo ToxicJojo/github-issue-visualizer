@@ -14,6 +14,7 @@ import Settings from './components/settings/Settings.vue'
 
 import testData from '../test/data/test-data.json'
 import testLabels from '../test/data/test-labels.json'
+import testContributors from '../test/data/test-contributors.json'
 
 
 export default {
@@ -31,6 +32,7 @@ export default {
   beforeMount () {
     this.$store.commit('repository/setIssues', testData)
     this.$store.commit('repository/setLabels', testLabels)
+    this.$store.commit('repository/setContributors', testContributors)
   },
   components: {
     Navbar,

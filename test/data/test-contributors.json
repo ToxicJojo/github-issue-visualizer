@@ -1,0 +1,22 @@
+[
+  {
+    "login": "ToxicJojo",
+    "id": 2575882,
+    "avatar_url": "https://avatars1.githubusercontent.com/u/2575882?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/ToxicJojo",
+    "html_url": "https://github.com/ToxicJojo",
+    "followers_url": "https://api.github.com/users/ToxicJojo/followers",
+    "following_url": "https://api.github.com/users/ToxicJojo/following{/other_user}",
+    "gists_url": "https://api.github.com/users/ToxicJojo/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/ToxicJojo/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/ToxicJojo/subscriptions",
+    "organizations_url": "https://api.github.com/users/ToxicJojo/orgs",
+    "repos_url": "https://api.github.com/users/ToxicJojo/repos",
+    "events_url": "https://api.github.com/users/ToxicJojo/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/ToxicJojo/received_events",
+    "type": "User",
+    "site_admin": false,
+    "contributions": 55
+  }
+]

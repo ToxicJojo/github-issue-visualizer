@@ -5,6 +5,9 @@ const mutations = {
   setLabels (state, labels) {
     state.labels = labels
   },
+  setContributors (state, contributors) {
+    state.contributors = contributors 
+  }, 
 }
 
 export default mutations
