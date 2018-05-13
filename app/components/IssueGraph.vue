@@ -22,12 +22,15 @@ export default {
   },
   computed: {
     computedIssues ()  {
+      // Make computedIssues depentent on this.updater to force updates on every tick of the simulation
       const x = this.updater
 
       const filters = this.$store.state.settings.filters
 
+      this.issues = this.initialIssues
+
       filters.forEach((filter) => {
-        this.issues = filter.method(this.issues, filter.args)
+        this.issues = filter.method(this.issues, ...filter.args)
       })
 
 

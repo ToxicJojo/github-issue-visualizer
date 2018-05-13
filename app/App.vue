@@ -30,6 +30,7 @@ export default {
   },
   beforeMount () {
     this.$store.commit('repository/setIssues', testData)
+    this.$store.commit('repository/setLabels', testLabels)
   },
   components: {
     Navbar,
