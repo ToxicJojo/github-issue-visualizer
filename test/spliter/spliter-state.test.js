@@ -9,14 +9,5 @@ describe('Spliter-State', function () {
       const splitIssues = splitter.state.splitState(issues)
       splitIssues.should.have.lengthOf(2)
     })
-
-    it('should create two groups with a meta and issues property', function () {
-      const splitIssues = splitter.state.splitState(issues)
-      splitIssues[0].should.have.property('meta')
-      splitIssues[0].should.have.property('issues')
-
-      splitIssues[1].should.have.property('meta')
-      splitIssues[1].should.have.property('issues')
-    })
   })
 })

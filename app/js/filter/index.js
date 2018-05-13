@@ -1,5 +1,6 @@
 import state from './filter-state'
 import label from './filter-label'
+import author from './filter-author'
 
 const filterList = [
   {
@@ -19,5 +20,6 @@ const filterList = [
 export default {
   state,
   label,
+  author,
   filterList,
 }
