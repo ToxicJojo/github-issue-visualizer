@@ -37,13 +37,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-.filter-state {
-  margin: 10px 0px;
-}
-
-.subtitle {
-  margin: 0px;
-}
-
 </style>

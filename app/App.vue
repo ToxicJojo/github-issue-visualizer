@@ -26,13 +26,13 @@ export default {
   computed: {
     issues () {
       return this.$store.state.repository.issues
-      //return testData
     },
   },
   beforeMount () {
     this.$store.commit('repository/setIssues', testData)
     this.$store.commit('repository/setLabels', testLabels)
     this.$store.commit('repository/setContributors', testContributors)
+    this.$store.dispatch('repository/loadIssueAuthors')
   },
   components: {
     Navbar,

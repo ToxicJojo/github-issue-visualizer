@@ -31,7 +31,10 @@ export default {
         // Load issues and labels for the repository
         await this.$store.dispatch('repository/loadIssues', { owner, repo })
         await this.$store.dispatch('repository/loadLabels', { owner, repo })
-        await this.$store.dispatch('repository/loadContributors', { owner, repo })
+        //await this.$store.dispatch('repository/loadContributors', { owner, repo })
+        this.$store.dispatch('repository/loadIssueAuthors')
+
+
       } catch (e) {
         // TODO Handle different types of errors and show meaningfull error messages
         console.log(e)

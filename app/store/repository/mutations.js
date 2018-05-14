@@ -8,6 +8,9 @@ const mutations = {
   setContributors (state, contributors) {
     state.contributors = contributors 
   }, 
+  setIssueAuthors (state, issueAuthors) {
+    state.issueAuthors = issueAuthors 
+  }, 
 }
 
 export default mutations

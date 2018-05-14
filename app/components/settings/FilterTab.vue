@@ -4,6 +4,7 @@
       //component(:is='filter.type' :index='index' :key='filter.type')
     FilterState
     FilterLabel
+    FilterAuthor
 
     //a.button.is-primary.is-outlined
       span Add filter
@@ -13,6 +14,7 @@
 <script>
 import FilterState from './filters/FilterState.vue'
 import FilterLabel from './filters/FilterLabel.vue'
+import FilterAuthor from './filters/FilterAuthor.vue'
 
 export default {
   name: 'FilterTab',
@@ -29,6 +31,7 @@ export default {
   components: {
     FilterState,
     FilterLabel,
+    FilterAuthor,
   }
 }
 </script>

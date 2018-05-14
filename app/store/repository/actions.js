@@ -13,6 +13,10 @@ const actions = {
     const contributors = await githubApi.getContributors(owner, repo)
     commit('setContributors', contributors)
   },
+  loadIssueAuthors ({ commit, state }) {
+    const issueAuthors = githubApi.getIssueAuthors(state.issues)
+    commit('setIssueAuthors', issueAuthors)
+  }
 }
 
 export default actions
