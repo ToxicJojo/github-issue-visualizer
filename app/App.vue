@@ -12,7 +12,8 @@ import Navbar from './components/Navbar.vue'
 import IssueGraph from './components/IssueGraph.vue'
 import Settings from './components/settings/Settings.vue'
 
-import testData from '../test/data/test-data.json'
+//import testData from '../test/data/test-data.json'
+import testData from '../test/data/testDataDayJS.json'
 import testLabels from '../test/data/test-labels.json'
 import testContributors from '../test/data/test-contributors.json'
 
