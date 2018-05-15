@@ -14,11 +14,13 @@ const simulation = d3.forceSimulation()
 let centers = []
 
 const init = (nodes, update) => {
-  const width = 800
-  const height = 800
-
   const svg = d3.select('svg')
+  const svgElement = document.querySelector('svg')
 
+  const width = svgElement.clientWidth
+  const height = svgElement.clientHeight
+
+  
   nodes.map((node) => {
     node.radius = 5
     return node

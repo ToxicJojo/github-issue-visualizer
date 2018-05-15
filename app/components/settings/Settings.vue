@@ -67,4 +67,8 @@ export default {
 
 <style lang="scss" scoped>
 
+.settings {
+  margin: 20px;
+}
+
 </style>

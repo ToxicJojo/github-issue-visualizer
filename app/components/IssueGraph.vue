@@ -80,10 +80,15 @@ export default {
 <style lang="scss" scoped>
 
 svg {
-  width: 800px;
-  height: 800px;
+  width: 100%;
+  height: calc(100vh - 200px);
 
   border: 1px solid black;
+}
+
+.issue-graph {
+  margin: 20px;
+  flex-grow: 1;
 }
 
 </style>
