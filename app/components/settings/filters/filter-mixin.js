@@ -9,11 +9,6 @@ const filterMixin = {
       this.$store.commit('settings/removeFilter', this.filter.type)
     }
   },
-  computed: {
-    filter () {
-      return this.$store.state.settings.filters[this.index]
-    }
-  },
   watch: {
     filterActive () {
       if (this.filterActive) {
