@@ -7,14 +7,12 @@
           b-tab-item(label='Filter')
             FilterTab
           b-tab-item(label='Splitter')
-            p Splitter
+            SplitterTab
           b-tab-item(label='Display')
-            p Display
+            DisplayTab
       .panel-block
-        button(@click='addFilterStateOpen') Add Filter State open
-        button(@click='addFilterStateClosed') Add Filter State closed
         button(@click='addSpliterState') Add Splitter State
-        button(@click='addFilterLabel') Add Filter Label 
+
 </template>
 
 <script>
@@ -23,6 +21,8 @@ import filter  from '../../js/filter'
 
 import LabelCheckboxes from './LabelCheckboxes.vue'
 import FilterTab from './FilterTab.vue'
+import SplitterTab from './SplitterTab.vue'
+import DisplayTab from './DisplayTab.vue'
 
 export default {
   name: 'Settings',
@@ -32,26 +32,6 @@ export default {
     }
   },
   methods: {
-    addFilterStateOpen () {
-      this.$store.commit('settings/addFilter', {
-        method: filter.state.filterState,
-        type: 'filterState',
-        args: ['open'],
-      })
-    },
-    addFilterStateClosed () {
-      this.$store.commit('settings/addFilter', {
-        method: filter.state.filterStateClosed,
-        type: 'filterState',
-      })
-    },
-    addFilterLabel () {
-      this.$store.commit('settings/addFilter', {
-        method: filter.label.filterLabel,
-        type: 'filterLabel',
-        args: [],
-      })
-    },
     addSpliterState () {
       this.$store.commit('settings/setSplitter', {
         method: splitter.state.splitState,
@@ -61,6 +41,8 @@ export default {
   components: {
     LabelCheckboxes,
     FilterTab,
+    SplitterTab,
+    DisplayTab,
   }
 }
 </script>
