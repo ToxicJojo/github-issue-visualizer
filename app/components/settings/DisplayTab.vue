@@ -1,9 +1,13 @@
 <template lang='pug'>
   .display-tab
     .card 
+      DisplayColor
 </template>
 
 <script>
+import DisplayColor from './display/DisplayColor.vue'
+
+
 export default {
 
   name: 'DisplayTab',
@@ -11,7 +15,10 @@ export default {
     return {
 
     }
-  }
+  },
+  components: {
+    DisplayColor,
+  },
 }
 </script>
 

@@ -24,6 +24,12 @@ const mutations = {
       args,
     }
   },
+  setDisplayColor (state, { method, args }) {
+    state.display.color = {
+      method,
+      args,
+    }
+  }
 }
 
 export default mutations

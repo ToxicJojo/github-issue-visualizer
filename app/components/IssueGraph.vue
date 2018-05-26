@@ -3,7 +3,7 @@
     button(@click='initGraph') Start simulation
     svg
       g
-        circle(v-for='issue in computedIssues' r='5' :cx='issue.x' :cy='issue.y')
+        circle(v-for='issue in computedIssues' r='5' :cx='issue.x' :cy='issue.y' :fill='issueColor(issue)')
 </template>
 
 <script>
@@ -60,6 +60,14 @@ export default {
     updateNodes () {
       this.updater++
       this.updater--
+    },
+    issueColor (issue) {
+      const colorSetting = this.$store.state.settings.display.color;
+      if (colorSetting.method) {
+        return colorSetting.method(issue, ...colorSetting.args)
+      }
+
+      return colorSetting.default
     },
   },
   watch: {
