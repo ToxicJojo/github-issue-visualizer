@@ -7,6 +7,11 @@ const state = {
       method: null,
       params: null,
     },
+    radius: {
+      default: 10,
+      method: null,
+      params: null,
+    }
   },
 }
 

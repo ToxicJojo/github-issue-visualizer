@@ -28,8 +28,16 @@ const mutations = {
     state.display.color = {
       method,
       args,
+      default: state.display.color.default,
     }
-  }
+  },
+  setDisplayRadius (state, { method, args }) {
+    state.display.radius = {
+      method,
+      args,
+      default: state.display.radius.default,
+    }    
+  },
 }
 
 export default mutations

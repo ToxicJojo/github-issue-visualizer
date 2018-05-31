@@ -1,7 +1,7 @@
 <template lang='pug'>
   .display-color
     .card-header
-      p.card-header-title Label Filter
+      p.card-header-title Issue Color
     .card-content.content
       b-radio(v-model='activeColorMethodIndex' native-value='0') Default Color
       b-radio(v-model='activeColorMethodIndex' native-value='1') State Color

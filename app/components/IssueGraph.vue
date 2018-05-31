@@ -1,9 +1,17 @@
 <template lang='pug'>
   .issue-graph
     button(@click='initGraph') Start simulation
-    svg
+
+    .issue-tooltip(v-if='selectedIssue' :style='tooltipStyle' @click='showIssueOnGithub(selectedIssue)')
+      .row
+        img.avatar(:src='selectedIssue.user.avatar_url')
+        span {{ selectedIssue.title}}
+      .tags
+        b-tag(v-for='label in selectedIssue.labels' :style='{ backgroundColor: "#" + label.color }') {{ label.name }}
+    svg(@click='hideIssueInfo')
       g
-        circle(v-for='issue in computedIssues' r='5' :cx='issue.x' :cy='issue.y' :fill='issueColor(issue)')
+
+        circle(v-for='issue in computedIssues' r='5' :cx='issue.x' :cy='issue.y' :fill='issueColor(issue)' :r='issue.radius' @click.stop='showIssueInfo($event, issue)')
 </template>
 
 <script>
@@ -16,6 +24,11 @@ export default {
   data () {
     return {
       issues: this.initialIssues,
+      selectedIssue: null,
+      tooltipPosition: {
+        x: 0,
+        y: 0,
+      },
       // Used to force computedIssues to get updated every tick of the simulation
       updater: 0,
     }
@@ -33,6 +46,21 @@ export default {
         this.issues = filter.method(this.issues, ...filter.args)
       })
 
+
+      // We need to count the sum of the exponential radius to apply softmax
+      let exponentialRadiusSum = 0;
+
+      this.issues = this.issues.map((issue) => {
+        issue.radius = this.issueRadius(issue)
+        exponentialRadiusSum += Math.exp(issue.radius / 15)
+        return issue
+      })
+
+      // Normalize radiuses using sotftmax (https://en.wikipedia.org/wiki/Softmax_function)
+      this.issues = this.issues.map((issue) => {
+        issue.radius = ((Math.exp(issue.radius / 15) / exponentialRadiusSum)) * this.issues.length * this.$store.state.settings.display.radius.default
+        return issue
+      })
 
       const spliter = this.$store.state.settings.splitter
       if (spliter) {
@@ -52,6 +80,18 @@ export default {
 
       return this.issues
     },
+    tooltipStyle () {
+      const openColor = '#2CBE4E'
+      const closedColor = '#cb2431'
+      const tooltipStyle = {
+        left: `${this.tooltipPosition.x}px`,
+        top: `${this.tooltipPosition.y - 100}px`,
+        borderTopColor: `${this.selectedIssue.state === "open"? openColor: closedColor}`
+      }
+
+
+      return tooltipStyle
+    }
   },
   methods: {
     initGraph () {
@@ -62,12 +102,30 @@ export default {
       this.updater--
     },
     issueColor (issue) {
-      const colorSetting = this.$store.state.settings.display.color;
+      const colorSetting = this.$store.state.settings.display.color
       if (colorSetting.method) {
         return colorSetting.method(issue, ...colorSetting.args)
       }
 
       return colorSetting.default
+    },
+    issueRadius (issue) {
+      const radiusSettings = this.$store.state.settings.display.radius
+      if (radiusSettings.method) {
+        return radiusSettings.method(issue, ...radiusSettings.args)
+      }
+      return radiusSettings.default
+    },
+    showIssueInfo (e, issue) {
+      this.tooltipPosition.x = e.pageX
+      this.tooltipPosition.y = e.pageY
+      this.selectedIssue = issue
+    },
+    hideIssueInfo (issue) {
+      this.selectedIssue = null
+    },
+    showIssueOnGithub (issue) {
+      window.open(issue.html_url, '_blank')
     },
   },
   watch: {
@@ -97,6 +155,28 @@ svg {
 .issue-graph {
   margin: 20px;
   flex-grow: 1;
+}
+
+.issue-tooltip {
+  position: fixed;
+  cursor: pointer;
+  background-color: #F2F2F2;
+  border-radius: 8px;
+  border-top: 8px solid;
+  padding: 8px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  margin-right: 5px;
+  border-radius: 100%;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 </style>

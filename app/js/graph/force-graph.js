@@ -29,7 +29,9 @@ const init = (nodes, update) => {
   simulation
     .nodes(nodes)
     .force('charge', d3.forceManyBody().strength(.5))
-    .force('collision', d3.forceCollide().radius(6).strength(1).iterations(1.5))
+    .force('collision', d3.forceCollide().radius((d) => {
+      return d.radius + 1
+    }).strength(1).iterations(1.5))
     .force('center', d3.forceCenter(width / 2, height / 2))
     .force('cluster', forceCluster()
       .centers(function (d) { return centers[d.cluster] })
