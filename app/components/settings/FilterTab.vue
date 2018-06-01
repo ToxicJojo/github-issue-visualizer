@@ -6,6 +6,7 @@
     FilterLabel
     FilterAuthor
     FilterPullRequest
+    FilterDate
 
     //a.button.is-primary.is-outlined
       span Add filter
@@ -17,6 +18,7 @@ import FilterState from './filters/FilterState.vue'
 import FilterLabel from './filters/FilterLabel.vue'
 import FilterAuthor from './filters/FilterAuthor.vue'
 import FilterPullRequest from './filters/FilterPullRequest.vue'
+import FilterDate from './filters/FilterDate.vue'
 
 export default {
   name: 'FilterTab',
@@ -35,6 +37,7 @@ export default {
     FilterLabel,
     FilterAuthor,
     FilterPullRequest,
+    FilterDate,
   }
 }
 </script>

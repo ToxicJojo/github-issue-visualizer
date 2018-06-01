@@ -47,10 +47,14 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 
 .settings {
   margin: 20px;
+}
+
+.panel-tabs section.tab-content {
+  overflow: visible;
 }
 
 </style>
