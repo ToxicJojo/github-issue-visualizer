@@ -5,6 +5,7 @@
     FilterState
     FilterLabel
     FilterAuthor
+    FilterPullRequest
 
     //a.button.is-primary.is-outlined
       span Add filter
@@ -15,6 +16,7 @@
 import FilterState from './filters/FilterState.vue'
 import FilterLabel from './filters/FilterLabel.vue'
 import FilterAuthor from './filters/FilterAuthor.vue'
+import FilterPullRequest from './filters/FilterPullRequest.vue'
 
 export default {
   name: 'FilterTab',
@@ -32,6 +34,7 @@ export default {
     FilterState,
     FilterLabel,
     FilterAuthor,
+    FilterPullRequest,
   }
 }
 </script>
