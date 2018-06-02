@@ -18,6 +18,8 @@
 import filterMixin from './filter-mixin'
 import filters from '../../../js/filter'
 
+import getEarliestDate from '../../../js/util/get-earliest-date'
+
 export default {
   name: 'FilterDate',
   data () {
@@ -28,6 +30,9 @@ export default {
         args: [new Date(0), new Date()],
       },
     }
+  },
+  beforeMount () {
+    this.filter.args[0] = getEarliestDate(this.$store.state.repository.issues)
   },
   mixins: [
     filterMixin,
