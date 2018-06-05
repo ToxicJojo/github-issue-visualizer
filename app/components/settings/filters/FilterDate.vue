@@ -9,9 +9,9 @@
         .card-content
           .content
             b-field(label='Start Date')
-              b-datepicker(v-model='filter.args[0]')
+              b-datepicker(v-model='filter.args[0]' inline)
             b-field(label='End Date')
-              b-datepicker(v-model='filter.args[1]')
+              b-datepicker(v-model='filter.args[1]' inline)
 </template>
 
 <script>

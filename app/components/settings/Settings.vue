@@ -51,10 +51,11 @@ export default {
 
 .settings {
   margin: 20px;
+  width: 350px;
 }
 
-.panel-tabs section.tab-content {
-  overflow: visible;
+.b-tabs section.tab-content {
+  padding: 0px;
 }
 
 </style>
