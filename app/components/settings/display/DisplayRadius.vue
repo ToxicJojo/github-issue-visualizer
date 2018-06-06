@@ -35,6 +35,7 @@ export default {
         method: this.radiusMethods[this.activeRadiusMethodIndex],
         args: [],
       })
+      this.$store.commit('settings/setRefresh', true)
     },
   },
 }

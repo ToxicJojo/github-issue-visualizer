@@ -1,4 +1,5 @@
 const state = {
+  refresh: false,
   filters: [],
   splitter: null,
   display: {

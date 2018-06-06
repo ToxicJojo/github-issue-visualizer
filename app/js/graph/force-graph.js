@@ -28,7 +28,7 @@ const init = (nodes, update) => {
 
   simulation
     .nodes(nodes)
-    .force('charge', d3.forceManyBody().strength(.5))
+    //.force('charge', d3.forceManyBody().strength(.5))
     .force('collision', d3.forceCollide().radius((d) => {
       return d.radius + 1
     }).strength(1).iterations(1.5))
@@ -44,6 +44,7 @@ const init = (nodes, update) => {
 
   simulation.on('tick', ticked) 
   simulation
+    //.alphaTarget(.3)
     .alpha(1)
     .restart()
 
@@ -51,13 +52,10 @@ const init = (nodes, update) => {
 
 const updateNodes = (nodes) => {
   simulation.nodes(nodes)
-  simulation
-    .alphaTarget(.3)
-    //.alpha(.2)
-    //.alpha(1)
-    //.restart()
-    //.restart()
-    //.alpha(.1)
+}
+
+const refreshAlpha = (alpha) => {
+  simulation.alpha(alpha).restart()
 }
 
 const updateClusters = (count) => {
@@ -74,5 +72,6 @@ const updateClusters = (count) => {
 export default {
   init,
   updateNodes,
+  refreshAlpha,
   updateClusters,
 }

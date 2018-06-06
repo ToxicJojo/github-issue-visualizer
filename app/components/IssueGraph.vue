@@ -35,7 +35,11 @@ export default {
   },
   computed: {
     computedIssues ()  {
-      // Make computedIssues depentent on this.updater to force updates on every tick of the simulation
+      if (this.$store.state.settings.refresh) {
+        forceGraph.refreshAlpha(.5)
+        this.$store.commit('settings/setRefresh', false)
+      }
+      // Make computedIssues dependent on this.updater to force updates on every tick of the simulation
       const x = this.updater
 
       const filters = this.$store.state.settings.filters
@@ -76,6 +80,12 @@ export default {
 
           return [...issueAcumulator, ...clusterdIssues]
         }, [])  
+      } else {
+        this.issues = this.issues.map((issue) => {
+          issue.cluster = 0
+          return issue
+        })
+        forceGraph.updateClusters(1)
       }
 
       return this.issues
@@ -91,6 +101,12 @@ export default {
 
 
       return tooltipStyle
+    },
+    settings () {
+      this.$store.state.settings.filters
+      this.$store.state.settings.splitter
+      this.$store.state.settings.display.radius
+      return this.$store.state.settings.filters
     }
   },
   methods: {
@@ -135,6 +151,10 @@ export default {
     initialIssues () {
       this.issues = this.initialIssues
       forceGraph.init(this.computedIssues, this.updateNodes)
+    },
+    settings () {
+      //forceGraph.refreshAlpha(.5, this.computedIssues)
+      console.log('seetings changed')
     },
   },
   props: [

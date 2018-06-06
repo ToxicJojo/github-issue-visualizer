@@ -1,4 +1,7 @@
 const mutations = {
+  setRefresh (state, refresh) {
+    state.refresh = refresh
+  },
   setFilters (state, filters) {
     state.filters = filters
   },

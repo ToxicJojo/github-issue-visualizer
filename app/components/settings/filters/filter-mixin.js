@@ -16,7 +16,11 @@ const filterMixin = {
       } else {
         this.removeFilter()
       }
+      this.$store.commit('settings/setRefresh', true)
     },
+    'filter.args': function() {
+      this.$store.commit('settings/setRefresh', true)
+    }
   },
   props: [
     'index',
