@@ -2,8 +2,9 @@
   .app
     Navbar
     .app-main
-      IssueGraph(:initialIssues='issues')
-      Settings
+      router-view(:initialIssues='issues')
+      //IssueGraph(:initialIssues='issues')
+      //Settings
 
 </template>
 

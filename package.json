@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --config config/webpack.dev.js",
+    "dev": "webpack-dev-server --config config/webpack.dev.js --history-api-fallback",
     "build": "webpack --config config/webpack.prod.js",
     "test": "mocha --recursive --require babel-register"
   },
@@ -41,6 +41,7 @@
     "style-loader": "^0.21.0",
     "vue": "^2.5.16",
     "vue-loader": "^15.0.9",
+    "vue-router": "^3.0.1",
     "vue-template-compiler": "^2.5.16",
     "vuex": "^3.0.1",
     "webpack": "^4.7.0",
@@ -55,6 +56,7 @@
     ]
   },
   "dependencies": {
+    "@mdi/font": "^2.4.85",
     "buefy": "^0.6.5"
   }
 }
