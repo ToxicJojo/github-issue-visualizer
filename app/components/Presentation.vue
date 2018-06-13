@@ -158,7 +158,7 @@ export default {
       return stats.getCommentSum(this.initialIssues)
     },
     commentAverage () {
-      return this.commentSum / this.initialIssues.length
+      return (this.commentSum / this.initialIssues.length).toFixed(2)
     },
     mostDiscussedIssue () {
       return stats.getMostDiscussedIssue(this.initialIssues)
