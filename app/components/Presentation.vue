@@ -7,13 +7,15 @@
         p.info-content The repository iamkun/dayjs has {{ initialIssues.length }} issues. Scroll down to learn more.
       .info-block
         h2.title Open vs Closed
-        p.info-content Of these {{ initialIssues.length }} issues 30 are open issues and 20 are closed issues.
+        p.info-content Of these {{ initialIssues.length }} issues {{ openIssuesCount }} are open issues and {{ closedIssuesCount }} are closed issues.
       .info-block
         h2.title Age
-        p.info-content The oldest issue is 234 days old while the newset is 4 days old.
+        p.info-content The oldest issue is {{ oldestIssueAge }} days old while the newset is only {{ newestIssueAge }} days old.
       .info-block
         h2.title Longstanding Issue
-        p.info-content Of all open issues Issue X is open the longest by 140 days. On average issues get closed in 9.2 days.
+        p.info-content Of all open issues Issue 
+          a(:href='oldestOpenIssue.html_url') \#{{ oldestOpenIssue.number }} {{ oldestOpenIssue.title }} 
+          | is open the longest for {{ oldestIssueAge }} days. On average issues get closed in {{ averageIssueDuration }} days.
       .info-block
         h2.title Discussion
         p.info-content Among all issues developers left 123 comments discussing issues. Thats an average of 2.34 comments per issue. The most discussed issue is: Prototype System with 20 comments.
@@ -28,9 +30,13 @@ import splitter  from '../js/splitter'
 import filters  from '../js/filter'
 import stateColor from '../js/display/state-color'
 import radiusAge from '../js/display/radius-age'
+import radiusComments from '../js/display/radius-comments'
+import stats from '../js/stats'
+
+import millisecondsToDays from '../js/util/milliseconds-to-days'
 
 export default {
-  name: 'App',
+  name: 'Presentation',
   data () {
     return {
     }
@@ -82,6 +88,26 @@ export default {
                 method: filters.state.filterState,
                 args: ['open'],
               })
+            } else if (i === 4) {
+              this.$store.commit('settings/setDisplayColor', {
+                method: stateColor,
+                args: [],
+              })
+              this.$store.commit('settings/setDisplayRadius', {
+                  method: radiusComments,
+                  args: [],
+              })
+            } else if (i === 5) {
+              this.$store.commit('settings/setDisplayColor', {
+                method: stateColor,
+                args: [],
+              }) 
+
+              this.$store.commit('settings/addFilter', {
+                type: 'filterPullRequest',
+                method: filters.pullRequest.filterPullRequest,
+                args: ['true'],
+              })
             }
           }
 
@@ -98,7 +124,34 @@ export default {
   computed: {
     repository () {
       return this.$store.state.repository
-    }
+    },
+    openIssuesCount () {
+      return filters.state.filterState(this.initialIssues, 'open').length
+    },
+    closedIssuesCount () {
+      return filters.state.filterState(this.initialIssues, 'closed').length 
+    },
+    oldestIssue () {
+      return stats.oldestIssue(this.initialIssues)
+    },
+    oldestIssueAge () {
+      return stats.getIssueAge(this.oldestIssue)
+    },
+    oldestOpenIssue () {
+      return stats.oldestIssue(filters.state.filterState(this.initialIssues, 'open'))
+    },
+    oldestOpenIssueAge () {
+      return stats.getIssueAge(this.oldestOpenIssue)
+    },
+    newestIssue () {
+      return stats.newestIssue(this.initialIssues)
+    },
+    newestIssueAge () {
+      return stats.getIssueAge(this.newestIssue)
+    },
+    averageIssueDuration () {
+      return millisecondsToDays(stats.getAverageIssueDuration(this.initialIssues))
+    },
   },
   components: {
     IssueGraph,
@@ -138,6 +191,10 @@ export default {
     color: rgba(0, 0, 0, .3);
   }
 
+  b {
+    background-color: #00000010;
+  }
+
   &.active {
     color: inherit;
     
@@ -146,6 +203,8 @@ export default {
     }
   }
 }
+
+
 
 
 
