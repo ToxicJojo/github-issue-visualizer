@@ -18,10 +18,12 @@
           | is open the longest for {{ oldestIssueAge }} days. On average issues get closed in {{ averageIssueDuration }} days.
       .info-block
         h2.title Discussion
-        p.info-content Among all issues developers left 123 comments discussing issues. Thats an average of 2.34 comments per issue. The most discussed issue is: Prototype System with 20 comments.
+        p.info-content Among all issues developers left {{ commentSum }} comments discussing issues. Thats an average of {{ commentAverage }} comments per issue. The most discussed issue is:
+          a(:href='mostDiscussedIssue.html_url') \#{{ mostDiscussedIssue.number }} {{ mostDiscussedIssue.title }} 
+          | with {{ mostDiscussedIssue.comments }} comments.
       .info-block
         h2.title Community Contribrution
-        p.info-content There are 21 pull requests.
+        p.info-content There are {{ pullRequestCount }} pull requests.
 </template>
 
 <script>
@@ -152,6 +154,18 @@ export default {
     averageIssueDuration () {
       return millisecondsToDays(stats.getAverageIssueDuration(this.initialIssues))
     },
+    commentSum () {
+      return stats.getCommentSum(this.initialIssues)
+    },
+    commentAverage () {
+      return this.commentSum / this.initialIssues.length
+    },
+    mostDiscussedIssue () {
+      return stats.getMostDiscussedIssue(this.initialIssues)
+    },
+    pullRequestCount () {
+      return filters.pullRequest.filterPullRequest(this.initialIssues, true).length
+    }
   },
   components: {
     IssueGraph,
