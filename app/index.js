@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Buefy from 'buefy'
 import App from './App.vue'
 
+// Import the buefy css
 import 'buefy/lib/buefy.css'
 
 import store  from './store'
