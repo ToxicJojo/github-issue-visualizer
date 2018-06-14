@@ -18,9 +18,9 @@
           | is open the longest for {{ oldestIssueAge }} days. On average issues get closed in {{ averageIssueDuration }} days.
       .info-block
         h2.title Discussion
-        p.info-content Among all issues developers left {{ commentSum }} comments discussing issues. Thats an average of {{ commentAverage }} comments per issue. The most discussed issue is:
-          a(:href='mostDiscussedIssue.html_url') \#{{ mostDiscussedIssue.number }} {{ mostDiscussedIssue.title }} 
-          | with {{ mostDiscussedIssue.comments }} comments.
+        p.info-content Among all issues developers left {{ commentCount }} comments discussing issues. Thats an average of {{ averageCommentCount }} comments per issue. The most discussed issue is:
+          a(:href='issueWithMostComments.html_url') \#{{ issueWithMostComments.number }} {{ issueWithMostComments.title }} 
+          | with {{ issueWithMostComments.comments }} comments.
       .info-block
         h2.title Community Contribrution
         p.info-content There are {{ pullRequestCount }} pull requests.
@@ -31,6 +31,8 @@ import IssueGraph from './IssueGraph.vue'
 import splitter  from '../js/splitter'
 import filters  from '../js/filter'
 import stats from '../js/stats'
+import statsMixin from './stats/stats-mixin'
+
 
 import radius from '../js/display/radius'
 import color from '../js/display/color'
@@ -112,7 +114,7 @@ export default {
                   args: [],
               })
               this.$store.commit('settings/addMarkedIssue', {
-                issue: this.mostDiscussedIssue,
+                issue: this.issueWithMostComments,
                 color: '#7957d5',
                 })
             } else if (i === 5) {
@@ -130,8 +132,6 @@ export default {
           }
 
           block.classList.toggle('active', true)
-
-
         } else {
           block.classList.toggle('active', false)
         }
@@ -140,6 +140,9 @@ export default {
     }
   },
   computed: {
+    issues () {
+      return this.initialIssues
+    },
     repository () {
       return this.$store.state.repository
     },
@@ -149,35 +152,11 @@ export default {
     closedIssuesCount () {
       return filters.state.filterState(this.initialIssues, 'closed').length 
     },
-    oldestIssue () {
-      return stats.oldestIssue(this.initialIssues)
-    },
-    oldestIssueAge () {
-      return stats.getIssueAge(this.oldestIssue)
-    },
     oldestOpenIssue () {
       return stats.oldestIssue(filters.state.filterState(this.initialIssues, 'open'))
     },
     oldestOpenIssueAge () {
       return stats.getIssueAge(this.oldestOpenIssue)
-    },
-    newestIssue () {
-      return stats.newestIssue(this.initialIssues)
-    },
-    newestIssueAge () {
-      return stats.getIssueAge(this.newestIssue)
-    },
-    averageIssueDuration () {
-      return millisecondsToDays(stats.getAverageIssueDuration(this.initialIssues))
-    },
-    commentSum () {
-      return stats.getCommentSum(this.initialIssues)
-    },
-    commentAverage () {
-      return (this.commentSum / this.initialIssues.length).toFixed(2)
-    },
-    mostDiscussedIssue () {
-      return stats.getMostDiscussedIssue(this.initialIssues)
     },
     pullRequestCount () {
       return filters.pullRequest.filterPullRequest(this.initialIssues, true).length
@@ -186,6 +165,9 @@ export default {
   components: {
     IssueGraph,
   },
+  mixins: [
+    statsMixin,
+  ],
   props: ['initialIssues']
 }
 </script>
