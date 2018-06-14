@@ -10,10 +10,7 @@
 </template>
 
 <script>
-import radiusAge from '../../../js/display/radius-age'
-import radiusAgeReverse from '../../../js/display/radius-age-reverse'
-import radiusComments from '../../../js/display/radius-comments'
- 
+import radius from '../../../js/display/radius'
 
 export default {
 
@@ -23,9 +20,9 @@ export default {
       activeRadiusMethodIndex: 0,
       radiusMethods: [
         null,
-        radiusAge,
-        radiusAgeReverse,
-        radiusComments,
+        radius.radiusAge,
+        radius.radiusAgeReverse,
+        radius.radiusComments,
       ],
     }
   },

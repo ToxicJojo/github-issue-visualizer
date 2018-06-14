@@ -31,9 +31,9 @@ import IssueGraph from './IssueGraph.vue'
 import splitter  from '../js/splitter'
 import filters  from '../js/filter'
 import stateColor from '../js/display/state-color'
-import radiusAge from '../js/display/radius-age'
-import radiusComments from '../js/display/radius-comments'
 import stats from '../js/stats'
+
+import radius from '../js/display/radius'
 
 import millisecondsToDays from '../js/util/milliseconds-to-days'
 
@@ -72,7 +72,7 @@ export default {
                 args: [],
               })
               this.$store.commit('settings/setDisplayRadius', {
-                  method: radiusAge,
+                  method: radius.radiusAge,
                   args: [],
               })
 
@@ -90,7 +90,7 @@ export default {
                 args: [],
               })
               this.$store.commit('settings/setDisplayRadius', {
-                  method: radiusAge,
+                  method: radius.radiusAge,
                   args: [],
               })
               this.$store.commit('settings/addFilter', {
@@ -108,7 +108,7 @@ export default {
                 args: [],
               })
               this.$store.commit('settings/setDisplayRadius', {
-                  method: radiusComments,
+                  method: radius.radiusComments,
                   args: [],
               })
               this.$store.commit('settings/addMarkedIssue', {
