@@ -3,6 +3,7 @@ const state = {
   issues: [],
   contributors: [],
   issueAuthors: [],
+  computedIssues: [],
 }
 
 export default state

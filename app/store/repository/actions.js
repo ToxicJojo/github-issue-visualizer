@@ -16,7 +16,7 @@ const actions = {
   loadIssueAuthors ({ commit, state }) {
     const issueAuthors = githubApi.getIssueAuthors(state.issues)
     commit('setIssueAuthors', issueAuthors)
-  }
+  },
 }
 
 export default actions

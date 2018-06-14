@@ -97,6 +97,8 @@ export default {
         forceGraph.updateClusters(1)
       }
 
+      this.$store.commit('repository/setComputedIssues', this.issues)
+
       return this.issues
     },
     tooltipStyle () {

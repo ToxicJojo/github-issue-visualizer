@@ -1,13 +1,16 @@
 <template lang='pug'>
   .playground
     IssueGraph(:initialIssues='initialIssues')
-    Settings
+    .flex-column
+      Settings
+      Stats
 
 </template>
 
 <script>
 import IssueGraph from './IssueGraph.vue'
 import Settings from './settings/Settings.vue'
+import Stats from './stats/Stats.vue'
 
 
 export default {
@@ -20,6 +23,7 @@ export default {
   components: {
     IssueGraph,
     Settings,
+    Stats,
   }
 }
 </script>
@@ -29,6 +33,11 @@ export default {
 .playground {
   display: flex;
   width: 100%;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
 }
 
 </style>

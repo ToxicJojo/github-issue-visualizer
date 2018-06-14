@@ -35,7 +35,7 @@ export default {
 <style lang="scss">
 
 .settings {
-  margin: 20px;
+  margin-bottom: 20px;
   width: 350px;
 }
 

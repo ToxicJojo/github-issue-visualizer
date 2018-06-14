@@ -11,6 +11,9 @@ const mutations = {
   setIssueAuthors (state, issueAuthors) {
     state.issueAuthors = issueAuthors 
   }, 
+  setComputedIssues (state, issues) {
+    state.computedIssues = issues
+  }
 }
 
 export default mutations
