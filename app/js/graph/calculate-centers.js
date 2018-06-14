@@ -1,3 +1,5 @@
+// Takes a number n and calculates n x/y coordinates along a circle such
+// that they are equally spaced from each other
 const caluculateCenters = (n) => {
   const centers = []
 

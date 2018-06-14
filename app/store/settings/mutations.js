@@ -2,7 +2,8 @@ const mutations = {
   reset (state) {
     state.refresh = true
     state.filters = []
-    state.splitter = null
+    state.splitter.method = null
+    state.splitter.args = []
     state.display.color = {
       default: 'black',
       method: null,

@@ -38,5 +38,4 @@ export default {
   margin-bottom: 5px;
 }
 
-
 </style>

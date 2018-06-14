@@ -27,7 +27,7 @@ export default {
       filter: {
         type: 'filterDate',
         method: filters.date.filterDate,
-        args: [new Date(0), new Date()],
+        args: [new Date(), new Date()],
       },
     }
   },

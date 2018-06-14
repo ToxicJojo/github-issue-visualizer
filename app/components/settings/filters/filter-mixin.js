@@ -4,19 +4,13 @@ const filterMixin = {
       filterActive: false,
     }
   },
-  methods: {
-    removeFilter () {
-      this.$store.commit('settings/removeFilter', this.filter.type)
-    }
-  },
   watch: {
     filterActive () {
       if (this.filterActive) {
         this.$store.commit('settings/addFilter', this.filter)
       } else {
-        this.removeFilter()
+        this.$store.commit('settings/removeFilter', this.filter.type)
       }
-      //this.$store.commit('settings/setRefresh', true)
     },
     'filter.args': function() {
       this.$store.commit('settings/setRefresh', true)

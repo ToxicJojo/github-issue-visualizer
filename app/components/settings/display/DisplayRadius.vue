@@ -1,12 +1,15 @@
 <template lang='pug'>
   .display-size
-    .card-header
-      p.card-header-title Issue Radius 
-    .card-content.content
-      b-radio(v-model='activeRadiusMethodIndex' native-value='0') Default Radius
-      b-radio(v-model='activeRadiusMethodIndex' native-value='1') Age Radius
-      b-radio(v-model='activeRadiusMethodIndex' native-value='2') Age Radius Reversed
-      b-radio(v-model='activeRadiusMethodIndex' native-value='3') Comments Radius 
+    b-collapse.card(:open='false')
+      .card-header(slot='trigger' slot-scope='props')
+        p.card-header-title Issue Radius
+        a.card-header-icon
+          b-icon(:icon='props.open ? "menu-down" : "menu-up"')
+      .card-content.content
+        b-radio(v-model='activeRadiusMethodIndex' native-value='0') Default Radius
+        b-radio(v-model='activeRadiusMethodIndex' native-value='1') Age Radius
+        b-radio(v-model='activeRadiusMethodIndex' native-value='2') Age Radius Reversed
+        b-radio(v-model='activeRadiusMethodIndex' native-value='3') Comments Radius 
 </template>
 
 <script>

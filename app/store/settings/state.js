@@ -1,7 +1,10 @@
 const state = {
   refresh: false,
   filters: [],
-  splitter: null,
+  splitter: {
+    method: null,
+    args: [],
+  },
   display: {
     color: {
       default: 'black',

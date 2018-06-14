@@ -1,19 +1,13 @@
 <template lang='pug'>
   .app
     Navbar
-    .app-main
-      router-view(:initialIssues='issues')
-      //IssueGraph(:initialIssues='issues')
-      //Settings
+    router-view(:initialIssues='issues')
 
 </template>
 
 <script>
 import Navbar from './components/Navbar.vue'
-import IssueGraph from './components/IssueGraph.vue'
-import Settings from './components/settings/Settings.vue'
 
-//import testData from '../test/data/test-data.json'
 import testData from '../test/data/testDataDayJS.json'
 import testLabels from '../test/data/test-labels.json'
 import testContributors from '../test/data/test-contributors.json'
@@ -31,6 +25,7 @@ export default {
     },
   },
   beforeMount () {
+    // Load some testData
     this.$store.commit('repository/setIssues', testData)
     this.$store.commit('repository/setLabels', testLabels)
     this.$store.commit('repository/setContributors', testContributors)
@@ -38,8 +33,6 @@ export default {
   },
   components: {
     Navbar,
-    IssueGraph,
-    Settings,
   }
 }
 </script>
@@ -50,10 +43,5 @@ export default {
   display: flex;
   flex-direction: column
 }
-
-.app-main {
-  display: flex;
-}
-
 
 </style>

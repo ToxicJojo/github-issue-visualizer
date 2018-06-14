@@ -3,13 +3,6 @@ import { forceCluster } from 'd3-force-cluster'
 
 import calculateCenters from './calculate-centers'
 
-const openClosedColor = (d) => {
-  if (d.state === 'open') {
-    return 'blue'
-  }
-  return 'red'
-}
-
 const simulation = d3.forceSimulation()
 let centers = []
 
@@ -20,15 +13,8 @@ const init = (nodes, update) => {
   const width = svgElement.clientWidth
   const height = svgElement.clientHeight
 
-  
-  nodes.map((node) => {
-    node.radius = 5
-    return node
-  })
-
   simulation
     .nodes(nodes)
-    //.force('charge', d3.forceManyBody().strength(.5))
     .force('collision', d3.forceCollide().radius((d) => {
       return d.radius + 1
     }).strength(1).iterations(1.5))
@@ -38,16 +24,10 @@ const init = (nodes, update) => {
       .strength(.4)
       .centerInertia(1))
 
-  const ticked = () => {
-    update()
-  }
-
-  simulation.on('tick', ticked) 
+  simulation.on('tick', update) 
   simulation
-    //.alphaTarget(.3)
     .alpha(1)
     .restart()
-
 }
 
 const updateNodes = (nodes) => {

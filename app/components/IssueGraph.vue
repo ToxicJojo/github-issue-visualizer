@@ -76,7 +76,7 @@ export default {
       })
 
       const spliter = this.$store.state.settings.splitter
-      if (spliter) {
+      if (spliter.method) {
         const splitIssues = spliter.method(this.issues, spliter.args)
 
         forceGraph.updateClusters(splitIssues.length)

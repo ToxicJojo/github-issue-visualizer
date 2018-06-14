@@ -1,8 +1,7 @@
 <template lang='pug'>
   .display-tab
-    .card 
-      DisplayColor
-      DisplayRadius
+    DisplayColor
+    DisplayRadius
 </template>
 
 <script>
@@ -11,11 +10,9 @@ import DisplayRadius from './display/DisplayRadius.vue'
 
 
 export default {
-
   name: 'DisplayTab',
   data () {
     return {
-
     }
   },
   components: {

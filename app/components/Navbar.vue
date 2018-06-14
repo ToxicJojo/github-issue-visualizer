@@ -38,7 +38,7 @@ export default {
       } catch (e) {
         // TODO Handle different types of errors and show meaningfull error messages
         console.log(e)
-        this.errorMessage = 'Could not load repository'
+        this.errorMessage = 'Couldn`t  load repository'
       } finally {
         this.loading = false
       }
@@ -60,6 +60,5 @@ export default {
     margin: 0px 10px;
   }
 }
-
 
 </style>

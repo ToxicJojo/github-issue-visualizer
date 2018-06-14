@@ -7,11 +7,9 @@
 import StateSplitter from './splitter/StateSplitter.vue'
 
 export default {
-
   name: 'SplitterTab',
   data () {
     return {
-
     }
   },
   components: {

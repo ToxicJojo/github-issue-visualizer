@@ -1,16 +1,10 @@
 <template lang='pug'>
   .filter-tab
-    //template(v-for='(filter, index) in filters')
-      //component(:is='filter.type' :index='index' :key='filter.type')
     FilterState
     FilterLabel
     FilterAuthor
     FilterPullRequest
     FilterDate
-
-    //a.button.is-primary.is-outlined
-      span Add filter
-      b-icon(pack='fas' icon='plus')
 </template>
 
 <script>
@@ -24,12 +18,6 @@ export default {
   name: 'FilterTab',
   data () {
     return {
-
-    }
-  },
-  computed: {
-    filters () {
-      return this.$store.state.settings.filters
     }
   },
   components: {
@@ -48,7 +36,5 @@ export default {
   display: flex;
   flex-direction: column;
 }
-
-
 
 </style>

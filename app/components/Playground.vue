@@ -16,11 +16,6 @@ export default {
     return {
     }
   },
-  computed: {
-    issues () {
-      return this.$store.state.repository.issues
-    },
-  },
   props: ['initialIssues'],
   components: {
     IssueGraph,
