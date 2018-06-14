@@ -14,6 +14,7 @@ const state = {
       params: null,
     }
   },
+  markedIssues: [],
 }
 
 export default state

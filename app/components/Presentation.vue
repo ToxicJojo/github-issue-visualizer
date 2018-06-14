@@ -75,7 +75,15 @@ export default {
                   method: radiusAge,
                   args: [],
               })
-              this.$store.commit('settings/setRefresh', true)
+
+              this.$store.commit('settings/addMarkedIssue', {
+                issue: this.oldestIssue,
+                color: '#7957d5',
+                })
+              this.$store.commit('settings/addMarkedIssue', {
+                issue: this.newestIssue,
+                color: '#7957d5', 
+              })
             } else if (i === 3) {
               this.$store.commit('settings/setDisplayColor', {
                 method: stateColor,
@@ -90,6 +98,10 @@ export default {
                 method: filters.state.filterState,
                 args: ['open'],
               })
+              this.$store.commit('settings/addMarkedIssue', {
+                issue: this.oldestOpenIssue,
+                color: '#7957d5',
+                })
             } else if (i === 4) {
               this.$store.commit('settings/setDisplayColor', {
                 method: stateColor,
@@ -99,6 +111,10 @@ export default {
                   method: radiusComments,
                   args: [],
               })
+              this.$store.commit('settings/addMarkedIssue', {
+                issue: this.mostDiscussedIssue,
+                color: '#7957d5',
+                })
             } else if (i === 5) {
               this.$store.commit('settings/setDisplayColor', {
                 method: stateColor,

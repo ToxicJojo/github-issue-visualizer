@@ -10,8 +10,7 @@
         b-tag(v-for='label in selectedIssue.labels' :style='{ backgroundColor: "#" + label.color }') {{ label.name }}
     svg(@click='hideIssueInfo')
       g
-
-        circle(v-for='issue in computedIssues' r='5' :cx='issue.x' :cy='issue.y' :fill='issueColor(issue)' :r='issue.radius' @click.stop='showIssueInfo($event, issue)')
+        circle(v-for='issue in computedIssues' r='5' :cx='issue.x' :cy='issue.y' :stroke-width='issue.strokeWidth' :stroke='issue.strokeColor' :fill='issueColor(issue)' :r='issue.radius' @click.stop='showIssueInfo($event, issue)')
 </template>
 
 <script>
@@ -64,6 +63,16 @@ export default {
       this.issues = this.issues.map((issue) => {
         issue.radius = ((Math.exp(issue.radius / 15) / exponentialRadiusSum)) * this.issues.length * this.$store.state.settings.display.radius.default
         return issue
+      })
+
+      this.issues = this.issues.map((issue) => {
+        issue.strokeWidth = '0'
+        return issue
+      })
+
+      this.$store.state.settings.markedIssues.forEach((markedIssue) => {
+        markedIssue.issue.strokeWidth = '3'
+        markedIssue.issue.strokeColor = markedIssue.color
       })
 
       const spliter = this.$store.state.settings.splitter

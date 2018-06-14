@@ -13,6 +13,7 @@ const mutations = {
       method: null,
       params: null,
     }
+    state.markedIssues = []
   },
   setRefresh (state, refresh) {
     state.refresh = refresh
@@ -59,6 +60,17 @@ const mutations = {
       args,
       default: state.display.radius.default,
     }    
+  },
+  addMarkedIssue (state, { issue, color }) {
+    state.markedIssues.push({
+      issue,
+      color,
+    })
+  },
+  removeMarkedIssue (state, issue) {
+    state.markedIssues = state.markedIssues.filter((markedIssue) => {
+      return markedIssue.issue.id !== issue.id
+    })
   },
 }
 
