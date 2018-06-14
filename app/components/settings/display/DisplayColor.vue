@@ -9,10 +9,7 @@
 </template>
 
 <script>
-
-import stateColor from '../../../js/display/state-color'
-import labelColor from '../../../js/display/label-color'
-
+import color from '../../../js/display/color'
 
 export default {
 
@@ -23,8 +20,8 @@ export default {
       activeColorMethodIndex: 0,
       colorMethods: [
         null,
-        stateColor,
-        labelColor,
+        color.stateColor,
+        color.labelColor,
       ],
     }
   },

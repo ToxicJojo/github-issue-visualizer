@@ -30,10 +30,10 @@
 import IssueGraph from './IssueGraph.vue'
 import splitter  from '../js/splitter'
 import filters  from '../js/filter'
-import stateColor from '../js/display/state-color'
 import stats from '../js/stats'
 
 import radius from '../js/display/radius'
+import color from '../js/display/color'
 
 import millisecondsToDays from '../js/util/milliseconds-to-days'
 
@@ -60,7 +60,7 @@ export default {
                 method: splitter.state.splitState,
               })
               this.$store.commit('settings/setDisplayColor', {
-                method: stateColor,
+                method: color.stateColor,
                 args: [],
               })
             } else if (i === 2) {
@@ -68,7 +68,7 @@ export default {
                 method: splitter.state.splitState,
               })
               this.$store.commit('settings/setDisplayColor', {
-                method: stateColor,
+                method: color.stateColor,
                 args: [],
               })
               this.$store.commit('settings/setDisplayRadius', {
@@ -86,7 +86,7 @@ export default {
               })
             } else if (i === 3) {
               this.$store.commit('settings/setDisplayColor', {
-                method: stateColor,
+                method: color.stateColor,
                 args: [],
               })
               this.$store.commit('settings/setDisplayRadius', {
@@ -104,7 +104,7 @@ export default {
                 })
             } else if (i === 4) {
               this.$store.commit('settings/setDisplayColor', {
-                method: stateColor,
+                method: color.stateColor,
                 args: [],
               })
               this.$store.commit('settings/setDisplayRadius', {
@@ -117,7 +117,7 @@ export default {
                 })
             } else if (i === 5) {
               this.$store.commit('settings/setDisplayColor', {
-                method: stateColor,
+                method: color.stateColor,
                 args: [],
               }) 
 
