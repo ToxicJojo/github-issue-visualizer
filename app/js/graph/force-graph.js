@@ -6,6 +6,10 @@ import calculateCenters from './calculate-centers'
 const simulation = d3.forceSimulation()
 let centers = []
 
+
+let width = 0
+let height = 0
+
 const init = (nodes, update) => {
   const svg = d3.select('svg')
   const svgElement = document.querySelector('svg')
@@ -39,10 +43,10 @@ const refreshAlpha = (alpha) => {
 }
 
 const updateClusters = (count) => {
-  centers = calculateCenters(2)
+  centers = calculateCenters(count)
   centers = centers.map((center) => {
-    center.x *= 150
-    center.y *= 150
+    center.x *= (width - 150)
+    center.y *= (height - 150)
 
     return center
   })

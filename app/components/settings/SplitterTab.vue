@@ -1,10 +1,12 @@
 <template lang='pug'>
   .spliter-tab
     StateSplitter
+    LabelSplitter
 </template>
 
 <script>
 import StateSplitter from './splitter/StateSplitter.vue'
+import LabelSplitter from './splitter/LabelSplitter.vue'
 
 export default {
   name: 'SplitterTab',
@@ -14,6 +16,7 @@ export default {
   },
   components: {
     StateSplitter,
+    LabelSplitter,
   },
 }
 </script>

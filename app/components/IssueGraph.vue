@@ -84,7 +84,7 @@ export default {
           })
 
           return [...issueAcumulator, ...clusterdIssues]
-        }, [])  
+        }, [])
       } else {
         this.issues = this.issues.map((issue) => {
           issue.cluster = 0
@@ -113,12 +113,6 @@ export default {
 
       return tooltipStyle
     },
-    settings () {
-      this.$store.state.settings.filters
-      this.$store.state.settings.splitter
-      this.$store.state.settings.display.radius
-      return this.$store.state.settings.filters
-    }
   },
   methods: {
     initGraph () {
@@ -163,10 +157,6 @@ export default {
     initialIssues () {
       this.issues = this.initialIssues
       forceGraph.init(this.computedIssues, this.updateNodes)
-    },
-    settings () {
-      //forceGraph.refreshAlpha(.5, this.computedIssues)
-      console.log('seetings changed')
     },
   },
   props: [
