@@ -37,8 +37,40 @@ export default {
       // Make computedIssues dependent on this.updater to force updates on every tick of the simulation
       const x = this.updater
 
-      const filters = this.$store.state.settings.filters
 
+      if (this.$store.state.settings.refresh) {
+        this.updateNodeStatus()
+        forceGraph.refreshAlpha(.5)
+        this.$store.commit('settings/setRefresh', false)
+        this.$store.commit('repository/setComputedIssues', this.issues)
+      }
+
+      return this.issues
+    },
+    tooltipStyle () {
+      const openColor = '#2CBE4E'
+      const closedColor = '#cb2431'
+      const tooltipStyle = {
+        left: `${this.tooltipPosition.x}px`,
+        top: `${this.tooltipPosition.y - 100}px`,
+        borderTopColor: `${this.selectedIssue.state === "open"? openColor: closedColor}`
+      }
+
+
+      return tooltipStyle
+    },
+  },
+  methods: {
+    initGraph () {
+      forceGraph.init(this.computedIssues, this.updateNodes)
+      this.$store.commit('repository/setComputedIssues', this.issues)
+    },
+    updateNodes () {
+      this.updater++
+      this.updater--
+    },
+    updateNodeStatus () {
+      const filters = this.$store.state.settings.filters
       this.issues = this.initialIssues
 
       filters.forEach((filter) => {
@@ -79,6 +111,7 @@ export default {
         
         this.issues = splitIssues.reduce((issueAcumulator, issueGroup, index) => {
           const clusterdIssues = issueGroup.map((issue) => {
+            issue = JSON.parse(JSON.stringify(issue))
             issue.cluster = index
             return issue
           })
@@ -92,36 +125,6 @@ export default {
         })
         forceGraph.updateClusters(1)
       }
-
-      if (this.$store.state.settings.refresh) {
-        forceGraph.refreshAlpha(.5)
-        this.$store.commit('settings/setRefresh', false)
-        this.$store.commit('repository/setComputedIssues', this.issues)
-      }
-
-      return this.issues
-    },
-    tooltipStyle () {
-      const openColor = '#2CBE4E'
-      const closedColor = '#cb2431'
-      const tooltipStyle = {
-        left: `${this.tooltipPosition.x}px`,
-        top: `${this.tooltipPosition.y - 100}px`,
-        borderTopColor: `${this.selectedIssue.state === "open"? openColor: closedColor}`
-      }
-
-
-      return tooltipStyle
-    },
-  },
-  methods: {
-    initGraph () {
-      forceGraph.init(this.computedIssues, this.updateNodes)
-      this.$store.commit('repository/setComputedIssues', this.issues)
-    },
-    updateNodes () {
-      this.updater++
-      this.updater--
     },
     issueColor (issue) {
       const colorSetting = this.$store.state.settings.display.color

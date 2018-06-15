@@ -1,5 +1,5 @@
 const state = {
-  refresh: false,
+  refresh: true,
   filters: [],
   splitter: {
     method: null,
