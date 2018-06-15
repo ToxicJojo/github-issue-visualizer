@@ -1,7 +1,5 @@
 <template lang='pug'>
   .issue-graph
-    button(@click='initGraph') Start simulation
-
     .issue-tooltip(v-if='selectedIssue' :style='tooltipStyle' @click='showIssueOnGithub(selectedIssue)')
       .row
         img.avatar(:src='selectedIssue.user.avatar_url')
@@ -31,6 +29,9 @@ export default {
       // Used to force computedIssues to get updated every tick of the simulation
       updater: 0,
     }
+  },
+  mounted () {
+    this.initGraph()
   },
   computed: {
     computedIssues ()  {
@@ -159,7 +160,7 @@ export default {
     },
     initialIssues () {
       this.issues = this.initialIssues
-      forceGraph.init(this.computedIssues, this.updateNodes)
+      this.initGraph()
     },
   },
   props: [
@@ -173,8 +174,7 @@ export default {
 svg {
   width: 100%;
   height: calc(100vh - 200px);
-
-  border: 1px solid black;
+  //border: 1px solid black;
 }
 
 .issue-graph {

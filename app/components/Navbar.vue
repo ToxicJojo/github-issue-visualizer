@@ -29,12 +29,14 @@ export default {
         this.loading = true
         this.errorMessage = null,
         // Load issues and labels for the repository
+        this.$store.commit('repository/setLoaded', false)
+        this.$store.commit('repository/setInfo', { owner, repo })
         await this.$store.dispatch('repository/loadIssues', { owner, repo })
         await this.$store.dispatch('repository/loadLabels', { owner, repo })
         //await this.$store.dispatch('repository/loadContributors', { owner, repo })
         this.$store.dispatch('repository/loadIssueAuthors')
-
-
+        this.$store.commit('settings/setRefresh', true)
+        this.$store.commit('repository/setLoaded', true)
       } catch (e) {
         // TODO Handle different types of errors and show meaningfull error messages
         console.log(e)

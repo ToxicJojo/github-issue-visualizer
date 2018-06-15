@@ -1,10 +1,17 @@
 <template lang='pug'>
   .presentation
-    IssueGraph.issue-graph(:initialIssues='initialIssues')
+    .fixed-block
+      IssueGraph.issue-graph(:initialIssues='initialIssues')
+      transition(name='fade')
+        .scroll-info(v-if='scrollIndex === 0')
+          span Scroll down
+          b-icon(icon='chevron-down' size='is-large')
     .repo-info
       .info-block.active
         h2.title Issue overview
-        p.info-content The repository iamkun/dayjs has {{ initialIssues.length }} issues. Scroll down to learn more.
+        p.info-content The repository 
+          a(:href='"https://github.com/" + repository' target='_blank') {{ repository }}
+          |  has {{ initialIssues.length }} issues. Scroll down to learn more.
       .info-block
         h2.title Open vs Closed
         p.info-content Of these {{ initialIssues.length }} issues {{ openIssuesCount }} are open issues and {{ closedIssuesCount }} are closed issues.
@@ -48,6 +55,7 @@ export default {
   name: 'Presentation',
   data () {
     return {
+      scrollIndex: 0,
     }
   },
   mounted () {
@@ -61,6 +69,7 @@ export default {
         if (distanceToTop > 180 && distanceToTop < 400) {
 
           if (!block.classList.contains('active')) {
+            this.scrollIndex = i
             this.$store.commit('settings/reset')
             if (i === 1) {
               this.$store.commit('settings/setSplitter', {
@@ -159,7 +168,7 @@ export default {
       return this.initialIssues
     },
     repository () {
-      return this.$store.state.repository
+      return this.$store.state.repository.info.owner + '/' + this.$store.state.repository.info.repo
     },
     openIssuesCount () {
       return filters.state.filterState(this.initialIssues, 'open').length
@@ -190,9 +199,9 @@ export default {
 <style lang="scss" scoped>
 
 .issue-graph {
-  position: fixed;
-  right: 20px;
-  width: 70%;
+  //position: fixed;
+  //right: 20px;
+  width: 100%;
 }
 
 .presentation {
@@ -214,7 +223,7 @@ export default {
   margin-top: 100px;
   color: rgba(0, 0, 0, .2);
 
-  h2 {
+  h2, a {
     color: rgba(0, 0, 0, .3);
   }
 
@@ -228,12 +237,44 @@ export default {
     h2 {
       color: inherit;
     }
+
+    a {
+      color: #7957d5;
+    }
   }
 }
 
+.fixed-block {
+  position: fixed;
+  top: 100px;
+  width: 70%;
+  left: 30%;
+}
 
+.scroll-info {
+  position: relative;
+  width: 100%;
+  bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgba(0, 0, 0, .5);
+  text-transform: uppercase;
+}
 
-
-
+.fade-enter-active {
+  animation: fade-in .35s;
+}
+.fade-leave-active {
+  animation: fade-in .35s reverse;
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
 </style>

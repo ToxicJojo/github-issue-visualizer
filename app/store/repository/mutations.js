@@ -13,7 +13,14 @@ const mutations = {
   }, 
   setComputedIssues (state, issues) {
     state.computedIssues = issues
-  }
+  },
+  setInfo (state, { owner, repo }) {
+    state.info.owner = owner
+    state.info.repo = repo
+  },
+  setLoaded (state, loaded) {
+    state.loaded = loaded
+  },
 }
 
 export default mutations
