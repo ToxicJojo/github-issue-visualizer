@@ -1,7 +1,10 @@
-const filterLabel = (issues, labelId) => {
+const filterLabel = (issues, ...labelIds) => {
+
   return issues.filter((issue) => {
     return issue.labels.some((label) => {
-      return label.id === labelId
+      return labelIds.some((labelId) => {
+        return label.id === labelId
+      })
     })
   })
 }

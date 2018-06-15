@@ -14,7 +14,9 @@
       .panel-block
         span Label count: {{ labelCount }}
         span Used labels count : {{ usedLabelsCount }}
-        span Most used label: {{ mostUsedLabel.name }} with {{ mostUsedLabelCount }} uses
+        span Most used label: 
+          label.tag(:style='{"background-color": "#" + mostUsedLabel.color}') {{ mostUsedLabel.name }} 
+          |  with {{ mostUsedLabelCount }} uses
 
 </template>
 
@@ -45,5 +47,7 @@ export default {
   flex-direction: column;
   align-items: flex-start;
 }
+
+
 
 </style>
