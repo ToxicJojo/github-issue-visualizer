@@ -24,6 +24,11 @@
       .info-block
         h2.title Community Contribrution
         p.info-content There are {{ pullRequestCount }} pull requests.
+      .info-block
+        h2.title Labels
+        p.info-content There are {{ labelCount }} labels of which only {{ usedLabelsCount }} are being used. The label that has been assigned to the most issues is 
+          label.tag(:style='{"background-color": "#" + mostUsedLabel.color}') {{ mostUsedLabel.name }}  
+          | which has been used {{ mostUsedLabelCount }} times.
 </template>
 
 <script>
@@ -127,6 +132,16 @@ export default {
                 type: 'filterPullRequest',
                 method: filters.pullRequest.filterPullRequest,
                 args: ['true'],
+              })
+            } else if (i === 6) {
+              this.$store.commit('settings/setDisplayColor', {
+                method: color.labelColor,
+                args: [],
+              })  
+
+              this.$store.commit('settings/setSplitter', {
+                method: splitter.label.splitLabel,
+                args: this.$store.state.repository.labels,
               })
             }
           }
