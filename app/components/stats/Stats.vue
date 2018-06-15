@@ -7,9 +7,14 @@
         span Comment count: {{ commentCount }}
         span Average comment count: {{ averageCommentCount }}
         span(v-if='issueWithMostComments') Most comments: {{ issueWithMostComments.comments}} - \#{{ issueWithMostComments.number }} {{ issueWithMostComments.title }}
+      .panel-block
         span(v-if='oldestIssue') Oldest Issue: {{ oldestIssueAge }} Days - \#{{ oldestIssue.number }} {{ oldestIssue.title }}
         span(v-if='newestIssue') Newest Issue: {{ newestIssueAge }} Days - \#{{ newestIssue.number }} {{ newestIssue.title }}
         span Average Issue Duration: {{ averageIssueDuration }} Days
+      .panel-block
+        span Label count: {{ labelCount }}
+        span Used labels count : {{ usedLabelsCount }}
+        span Most used label: {{ mostUsedLabel.name }} with {{ mostUsedLabelCount }} uses
 
 </template>
 

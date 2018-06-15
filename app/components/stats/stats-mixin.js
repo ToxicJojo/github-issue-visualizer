@@ -30,6 +30,21 @@ const statsMixin = {
   averageIssueDuration () {
     return millisecondsToDays(stats.getAverageIssueDuration(this.issues))
   },
+  labelCount () {
+    return this.$store.state.repository.labels.length
+  },
+  usedLabels () {
+    return stats.getUsedLabels(this.issues)
+  },
+  usedLabelsCount () {
+    return this.usedLabels.length
+  },
+  mostUsedLabel () {
+    return stats.getMostUsedLabel(this.issues, this.$store.state.repository.labels)
+  },
+  mostUsedLabelCount () {
+    return stats.getMostUsedLabelCount(this.issues, this.$store.state.repository.labels)
+  },
  },
 }
 

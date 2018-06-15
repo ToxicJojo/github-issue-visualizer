@@ -1,79 +1,90 @@
 [
   {
-    "id": 851751429,
-    "url": "https://api.github.com/repos/ToxicJojo/mkdesign/labels/bug",
-    "name": "bug",
-    "color": "d73a4a",
-    "default": true
+    "id": 912333121,
+    "node_id": "MDU6TGFiZWw5MTIzMzMxMjE=",
+    "url": "https://api.github.com/repos/iamkun/dayjs/labels/discussion",
+    "name": "discussion",
+    "color": "76f280",
+    "default": false
   },
   {
-    "id": 851751430,
-    "url": "https://api.github.com/repos/ToxicJojo/mkdesign/labels/duplicate",
+    "id": 896716357,
+    "node_id": "MDU6TGFiZWw4OTY3MTYzNTc=",
+    "url": "https://api.github.com/repos/iamkun/dayjs/labels/duplicate",
     "name": "duplicate",
     "color": "cfd3d7",
     "default": true
   },
   {
-    "id": 851751431,
-    "url": "https://api.github.com/repos/ToxicJojo/mkdesign/labels/enhancement",
+    "id": 896716358,
+    "node_id": "MDU6TGFiZWw4OTY3MTYzNTg=",
+    "url": "https://api.github.com/repos/iamkun/dayjs/labels/enhancement",
     "name": "enhancement",
     "color": "a2eeef",
     "default": true
   },
   {
-    "id": 851751433,
-    "url": "https://api.github.com/repos/ToxicJojo/mkdesign/labels/good%20first%20issue",
+    "id": 896716360,
+    "node_id": "MDU6TGFiZWw4OTY3MTYzNjA=",
+    "url": "https://api.github.com/repos/iamkun/dayjs/labels/good%20first%20issue",
     "name": "good first issue",
     "color": "7057ff",
     "default": true
   },
   {
-    "id": 851751432,
-    "url": "https://api.github.com/repos/ToxicJojo/mkdesign/labels/help%20wanted",
+    "id": 896716359,
+    "node_id": "MDU6TGFiZWw4OTY3MTYzNTk=",
+    "url": "https://api.github.com/repos/iamkun/dayjs/labels/help%20wanted",
     "name": "help wanted",
-    "color": "008672",
+    "color": "d93f0b",
     "default": true
   },
   {
-    "id": 851751434,
-    "url": "https://api.github.com/repos/ToxicJojo/mkdesign/labels/invalid",
+    "id": 896716361,
+    "node_id": "MDU6TGFiZWw4OTY3MTYzNjE=",
+    "url": "https://api.github.com/repos/iamkun/dayjs/labels/invalid",
     "name": "invalid",
     "color": "e4e669",
     "default": true
   },
   {
-    "id": 851751435,
-    "url": "https://api.github.com/repos/ToxicJojo/mkdesign/labels/question",
+    "id": 896716362,
+    "node_id": "MDU6TGFiZWw4OTY3MTYzNjI=",
+    "url": "https://api.github.com/repos/iamkun/dayjs/labels/question",
     "name": "question",
     "color": "d876e3",
     "default": true
   },
   {
-    "id": 856838683,
-    "url": "https://api.github.com/repos/ToxicJojo/mkdesign/labels/wizard:bug",
-    "name": "wizard:bug",
-    "color": "b60205",
+    "id": 896795511,
+    "node_id": "MDU6TGFiZWw4OTY3OTU1MTE=",
+    "url": "https://api.github.com/repos/iamkun/dayjs/labels/semantic-release",
+    "name": "semantic-release",
+    "color": "ededed",
     "default": false
   },
   {
-    "id": 856838854,
-    "url": "https://api.github.com/repos/ToxicJojo/mkdesign/labels/wizard:change",
-    "name": "wizard:change",
-    "color": "1d76db",
-    "default": false
-  },
-  {
-    "id": 856838505,
-    "url": "https://api.github.com/repos/ToxicJojo/mkdesign/labels/wizard:new",
-    "name": "wizard:new",
-    "color": "0e8a16",
-    "default": false
-  },
-  {
-    "id": 851751437,
-    "url": "https://api.github.com/repos/ToxicJojo/mkdesign/labels/wontfix",
+    "id": 896716363,
+    "node_id": "MDU6TGFiZWw4OTY3MTYzNjM=",
+    "url": "https://api.github.com/repos/iamkun/dayjs/labels/wontfix",
     "name": "wontfix",
     "color": "ffffff",
     "default": true
+  },
+  {
+    "id": 896716356,
+    "node_id": "MDU6TGFiZWw4OTY3MTYzNTY=",
+    "url": "https://api.github.com/repos/iamkun/dayjs/labels/%E2%98%A2%EF%B8%8FBug",
+    "name": "☢️Bug",
+    "color": "d93f0b",
+    "default": false
+  },
+  {
+    "id": 928547511,
+    "node_id": "MDU6TGFiZWw5Mjg1NDc1MTE=",
+    "url": "https://api.github.com/repos/iamkun/dayjs/labels/%F0%9F%9A%A8%20High%20Priority",
+    "name": "🚨 High Priority",
+    "color": "e11d21",
+    "default": false
   }
 ]

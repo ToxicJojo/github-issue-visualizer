@@ -34,10 +34,6 @@ export default {
   },
   computed: {
     computedIssues ()  {
-      if (this.$store.state.settings.refresh) {
-        forceGraph.refreshAlpha(.5)
-        this.$store.commit('settings/setRefresh', false)
-      }
       // Make computedIssues dependent on this.updater to force updates on every tick of the simulation
       const x = this.updater
 
@@ -97,7 +93,11 @@ export default {
         forceGraph.updateClusters(1)
       }
 
-      this.$store.commit('repository/setComputedIssues', this.issues)
+      if (this.$store.state.settings.refresh) {
+        forceGraph.refreshAlpha(.5)
+        this.$store.commit('settings/setRefresh', false)
+        this.$store.commit('repository/setComputedIssues', this.issues)
+      }
 
       return this.issues
     },
@@ -123,6 +123,7 @@ export default {
   methods: {
     initGraph () {
       forceGraph.init(this.computedIssues, this.updateNodes)
+      this.$store.commit('repository/setComputedIssues', this.issues)
     },
     updateNodes () {
       this.updater++

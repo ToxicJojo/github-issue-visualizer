@@ -4,6 +4,9 @@ import getIssueAge from './get-issue-age'
 import getAverageIssueDuration from './get-average-issue-duration'
 import getCommentSum from './get-comment-sum'
 import getMostDiscussedIssue from './get-most-discussed-issue'
+import getUsedLabels from './get-used-labels'
+import getMostUsedLabel from './get-most-used-label'
+import getMostUsedLabelCount from './get-most-used-label-count'
 
 export default {
   oldestIssue,
@@ -12,4 +15,7 @@ export default {
   getAverageIssueDuration,
   getCommentSum,
   getMostDiscussedIssue,
+  getUsedLabels,
+  getMostUsedLabel,
+  getMostUsedLabelCount,
 }

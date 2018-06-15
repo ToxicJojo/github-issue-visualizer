@@ -41,6 +41,7 @@ export default {
 
 .b-tabs section.tab-content {
   padding: 0px;
+  //overflow: visible;
 }
 
 </style>
