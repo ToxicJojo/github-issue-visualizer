@@ -30,12 +30,15 @@
           | with {{ issueWithMostComments.comments }} comments.
       .info-block
         h2.title Community Contribrution
-        p.info-content There are {{ pullRequestCount }} pull requests.
+        p.info-content There are {{ pullRequestCount }} pull requests of which {{ pullRequestCount - openPullRequestCount }} have been already closed.
       .info-block
         h2.title Labels
         p.info-content There are {{ labelCount }} labels of which only {{ usedLabelsCount }} are being used. The label that has been assigned to the most issues is 
           label.tag(:style='{"background-color": "#" + mostUsedLabel.color}') {{ mostUsedLabel.name }}  
           | which has been used {{ mostUsedLabelCount }} times.
+    .explore
+      h2.title.has-text-light If you want to explore the dataset more head to the playground!
+      router-link(to='/').button.is-rounded Go to Playground
 </template>
 
 <script>
@@ -183,8 +186,11 @@ export default {
       return stats.getIssueAge(this.oldestOpenIssue)
     },
     pullRequestCount () {
-      return filters.pullRequest.filterPullRequest(this.initialIssues, true).length
-    }
+      return filters.pullRequest.filterPullRequest(this.initialIssues, 'true').length
+    },
+    openPullRequestCount () {
+      return filters.state.filterState(filters.pullRequest.filterPullRequest(this.initialIssues, 'true'), 'open').length  
+    },
   },
   components: {
     IssueGraph,
@@ -199,28 +205,30 @@ export default {
 <style lang="scss" scoped>
 
 .issue-graph {
-  //position: fixed;
-  //right: 20px;
   width: 100%;
 }
 
 .presentation {
   display: flex;
+  //align-items: flex-end;
+  flex-direction: column;
   width: 100%;
   position: relative;
-  padding: 30px;
+  //padding: 30px;
 }
 
 .repo-info {
   width: 25%;
-  margin-bottom: 50vh;
+  margin-bottom: 30vh;
+  margin-left: 20px;
+  //margin-bottom: 180px;
 }
 
 .info-block {
   display: flex;
   flex-direction: column;
-  margin-bottom: 100px;
-  margin-top: 100px;
+  margin-bottom: 120px;
+  margin-top: 120px;
   color: rgba(0, 0, 0, .2);
 
   h2, a {
@@ -276,5 +284,35 @@ export default {
     opacity: 1;
   }
 }
+
+.explore {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 300px;
+  padding-top: 48px;
+  color: white;
+  z-index: 4;
+  background-image: linear-gradient(45deg, #312a6c, #852d91);
+
+  h2 {
+    margin-bottom: 32px;
+  }
+
+  &:before {
+    content: '';
+    position: relative;
+    top: -68px;
+    display: block;
+    background-color: white;
+    height: 30px;
+    width: 101%;
+    transform: rotate(.7deg);
+    z-index: 2;
+  }
+}
+
 
 </style>

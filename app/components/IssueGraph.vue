@@ -44,6 +44,7 @@ export default {
         forceGraph.refreshAlpha(.5)
         this.$store.commit('settings/setRefresh', false)
         this.$store.commit('repository/setComputedIssues', this.issues)
+        forceGraph.updateNodes(this.computedIssues)
       }
 
       return this.issues
@@ -143,8 +144,8 @@ export default {
       return radiusSettings.default
     },
     showIssueInfo (e, issue) {
-      this.tooltipPosition.x = e.pageX
-      this.tooltipPosition.y = e.pageY
+      this.tooltipPosition.x = e.clientX
+      this.tooltipPosition.y = e.clientY
       this.selectedIssue = issue
     },
     hideIssueInfo (issue) {
@@ -156,7 +157,7 @@ export default {
   },
   watch: {
     computedIssues () {
-      forceGraph.updateNodes(this.computedIssues)
+      //forceGraph.updateNodes(this.computedIssues)
     },
     initialIssues () {
       this.issues = this.initialIssues

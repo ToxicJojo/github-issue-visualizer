@@ -7,12 +7,14 @@
       p.subtitle.is-2.empty-state__text Load some Issues to start exploring
       p Or get started with some demo data
       a.button.is-rounded.is-outlined.is-primary.empty-state-button(@click='loadDemoData') Load Demo Data
+    Footer
 
 
 </template>
 
 <script>
 import Navbar from './components/Navbar.vue'
+import Footer from './components/Footer.vue'
 
 import testData from '../test/data/testDataDayJS.json'
 import testLabels from '../test/data/test-labels.json'
@@ -49,6 +51,7 @@ export default {
   },
   components: {
     Navbar,
+    Footer,
   }
 }
 </script>
