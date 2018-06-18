@@ -1,12 +1,13 @@
 <template lang='pug'>
   .app
     Navbar
-    router-view(:initialIssues='issues' v-if='repositoryLoaded')
-    .empty-state(v-else)
-      b-icon(icon='arrow-up' size='is-large' type='is-dark')
-      p.subtitle.is-2.empty-state__text Load some Issues to start exploring
-      p Or get started with some demo data
-      a.button.is-rounded.is-outlined.is-primary.empty-state-button(@click='loadDemoData') Load Demo Data
+    .wrapper
+      router-view(:initialIssues='issues' v-if='repositoryLoaded')
+      .empty-state(v-else)
+        b-icon(icon='arrow-up' size='is-large' type='is-dark')
+        p.subtitle.is-2.empty-state__text Load some Issues to start exploring
+        p Or get started with some demo data
+        a.button.is-rounded.is-outlined.is-primary.empty-state-button(@click='loadDemoData') Load Demo Data
     Footer
 
 
@@ -79,6 +80,10 @@ export default {
 
 .empty-state-button {
   margin-top: 16px;
+}
+
+.wrapper {
+  min-height: calc(100vh - 60px - 100px);
 }
 
 </style>

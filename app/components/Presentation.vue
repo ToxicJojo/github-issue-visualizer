@@ -36,6 +36,7 @@
         p.info-content There are {{ labelCount }} labels of which only {{ usedLabelsCount }} are being used. The label that has been assigned to the most issues is 
           label.tag(:style='{"background-color": "#" + mostUsedLabel.color}') {{ mostUsedLabel.name }}  
           | which has been used {{ mostUsedLabelCount }} times.
+    .blocker
     .explore
       h2.title.has-text-light If you want to explore the dataset more head to the playground!
       router-link(to='/').button.is-rounded Go to Playground
@@ -291,11 +292,11 @@ export default {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding-bottom: 300px;
-  padding-top: 48px;
+  padding-bottom: 200px;
+  padding-top: 64px;
   color: white;
   z-index: 4;
-  background-image: linear-gradient(45deg, #312a6c, #852d91);
+  background-image: linear-gradient(45deg, #38317d, #852d91);
 
   h2 {
     margin-bottom: 32px;
@@ -303,13 +304,13 @@ export default {
 
   &:before {
     content: '';
-    position: relative;
-    top: -68px;
+    position: absolute;
+    top: -14px;
     display: block;
     background-color: white;
     height: 30px;
     width: 101%;
-    transform: rotate(.7deg);
+    transform: rotate(-.7deg);
     z-index: 2;
   }
 }
