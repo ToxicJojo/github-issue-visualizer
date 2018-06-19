@@ -31,7 +31,9 @@ export default {
     }
   },
   mounted () {
+    this.updateDefaultRadius()
     this.initGraph()
+
   },
   computed: {
     computedIssues ()  {
@@ -154,6 +156,17 @@ export default {
     showIssueOnGithub (issue) {
       window.open(issue.html_url, '_blank')
     },
+    updateDefaultRadius () {
+      const svgElement = document.querySelector('svg')
+
+      const width = svgElement.clientWidth
+      const height = svgElement.clientHeight
+
+      const radiusScaleFactor = Math.min((width / 1000), 1)
+      console.log(radiusScaleFactor)   
+
+      this.$store.commit('settings/updateDefaultRadius', 10 * radiusScaleFactor)
+    }
   },
   watch: {
     computedIssues () {
@@ -162,6 +175,7 @@ export default {
     initialIssues () {
       this.issues = this.initialIssues
       this.initGraph()
+      this.updateDefaultRadius()
     },
   },
   props: [
@@ -179,7 +193,7 @@ svg {
 }
 
 .issue-graph {
-  margin: 20px;
+  //margin: 20px;
   flex-grow: 1;
 }
 

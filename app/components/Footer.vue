@@ -27,6 +27,7 @@ footer {
   display: flex;
   justify-content: center;
 
+  z-index: 1;
   padding: 18px;
   background-color: #212121;
 }

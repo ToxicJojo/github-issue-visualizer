@@ -4,6 +4,7 @@ import App from './App.vue'
 
 // Import the buefy css
 import 'buefy/lib/buefy.css'
+import './sass/style.scss'
 
 import store  from './store'
 import router from './router'

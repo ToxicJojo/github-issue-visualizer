@@ -14,8 +14,8 @@ const init = (nodes, update) => {
   const svg = d3.select('svg')
   const svgElement = document.querySelector('svg')
 
-  const width = svgElement.clientWidth
-  const height = svgElement.clientHeight
+  width = svgElement.clientWidth
+  height = svgElement.clientHeight
 
   simulation
     .nodes(nodes)
@@ -45,8 +45,8 @@ const refreshAlpha = (alpha) => {
 const updateClusters = (count) => {
   centers = calculateCenters(count)
   centers = centers.map((center) => {
-    center.x *= (width - 150)
-    center.y *= (height - 150)
+    center.x *= (width / 3)
+    center.y *= (height / 3)
 
     return center
   })

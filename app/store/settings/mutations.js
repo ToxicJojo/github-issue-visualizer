@@ -9,11 +9,9 @@ const mutations = {
       method: null,
       params: null,
     }
-    state.display.radius = {
-      default: 10,
-      method: null,
-      params: null,
-    }
+    state.display.radius.method = null
+    state.display.radius.params = null
+
     state.markedIssues = []
   },
   setRefresh (state, refresh) {
@@ -72,6 +70,10 @@ const mutations = {
     state.markedIssues = state.markedIssues.filter((markedIssue) => {
       return markedIssue.issue.id !== issue.id
     })
+  },
+  updateDefaultRadius (state, radius) {
+    state.display.radius.default = radius
+    state.refresh = true
   },
 }
 

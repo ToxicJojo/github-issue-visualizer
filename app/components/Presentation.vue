@@ -64,13 +64,26 @@ export default {
   },
   mounted () {
     const infoBlocks = document.querySelectorAll('.info-block');
+
+    const containerTop = document.querySelector('.repo-info').getBoundingClientRect().top
+    console.log(containerTop)
+
+    const firstBlockDistanceTop = infoBlocks[0].getBoundingClientRect().top
+    const firstBlockHeight = infoBlocks[0].getBoundingClientRect().height
+    console.log(firstBlockDistanceTop)
+
+
     window.onscroll = (e) => {
       const scrollPosition = document.documentElement.scrollTop || document.body.scrollTop
 
       infoBlocks.forEach((block, i) => {
         const distanceToTop = block.getBoundingClientRect().top
+        const height = block.getBoundingClientRect().height
 
-        if (distanceToTop > 180 && distanceToTop < 400) {
+        const previousBlockTop = i > 0 ? infoBlocks[i - 1].getBoundingClientRect().top : -1
+
+        //if (distanceToTop > 180 && distanceToTop < 400) {
+        if (previousBlockTop <= 0 && distanceToTop > 0) {
 
           if (!block.classList.contains('active')) {
             this.scrollIndex = i
@@ -205,51 +218,52 @@ export default {
 
 <style lang="scss" scoped>
 
+$breakpoint-mobile: 780px;
+
+@mixin mobile {
+  @media screen and (max-width: $breakpoint-mobile) {
+    @content
+  }
+};
+
 .issue-graph {
   width: 100%;
 }
 
 .presentation {
   display: flex;
-  //align-items: flex-end;
   flex-direction: column;
   width: 100%;
   position: relative;
-  //padding: 30px;
 }
 
 .repo-info {
   width: 25%;
   margin-bottom: 30vh;
-  margin-left: 20px;
-  //margin-bottom: 180px;
+  padding-left: 20px;
+  margin-bottom: 400px;
+  margin-bottom: calc(50vh);
+  @include mobile () {
+    width: 100%;
+    padding-right: 20px;
+    margin-bottom: calc(100vh - 230px);
+  }
 }
 
 .info-block {
   display: flex;
   flex-direction: column;
-  margin-bottom: 120px;
-  margin-top: 120px;
-  color: rgba(0, 0, 0, .2);
+  padding-bottom: 60px;
+  padding-top: 60px;
+  opacity: 0.35;
+  transition: opacity .35s;
 
-  h2, a {
-    color: rgba(0, 0, 0, .3);
-  }
-
-  b {
-    background-color: #00000010;
+  @include mobile () {
+    padding-top: 0px;
   }
 
   &.active {
-    color: inherit;
-    
-    h2 {
-      color: inherit;
-    }
-
-    a {
-      color: #7957d5;
-    }
+    opacity: 1;
   }
 }
 
@@ -258,6 +272,16 @@ export default {
   top: 100px;
   width: 70%;
   left: 30%;
+  z-index: 1;
+
+  @include mobile() {
+    width: 100%;
+    left: 0px;
+    bottom: 0px;
+    top: unset;
+    height: calc(100vh - 200px);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 12%);
+  }
 }
 
 .scroll-info {
@@ -294,6 +318,8 @@ export default {
   text-align: center;
   padding-bottom: 200px;
   padding-top: 64px;
+  padding-left: 8px;
+  padding-right: 8px;
   color: white;
   z-index: 4;
   background-image: linear-gradient(45deg, #38317d, #852d91);
