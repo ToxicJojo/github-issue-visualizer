@@ -42,6 +42,11 @@ export default {
 
 <style lang="scss" scoped>
 
+
+.stats {
+  z-index: 1;
+}
+
 .panel-block {
   display: flex;
   flex-direction: column;

@@ -36,12 +36,16 @@ export default {
 
 .settings {
   margin-bottom: 20px;
-  width: 350px;
+  //width: 350px;'
+  width: 100%;
+  z-index: 1;
 }
 
 .b-tabs section.tab-content {
   padding: 0px;
   //overflow: visible;
+  max-height: calc(100vh - 100px - 60px - 88px);
+  overflow-y: scroll;
 }
 
 </style>

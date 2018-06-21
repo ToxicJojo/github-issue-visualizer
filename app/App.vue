@@ -84,6 +84,7 @@ export default {
 }
 
 .wrapper {
+  display: flex;
   min-height: calc(100vh - 60px - 100px);
 }
 
