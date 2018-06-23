@@ -45,6 +45,9 @@
     .explore
       h2.title.has-text-light If you want to explore the dataset more head to the playground!
       .button.is-rounded(@click='gotoPlayground()') Go to Playground
+      .scroll-info.back-to-top(@click='scrollToTop')
+        b-icon(icon='chevron-up' size='is-large')
+        span Back to top
 </template>
 
 <script>
@@ -195,6 +198,9 @@ export default {
     gotoPlayground () {
       this.$store.commit('settings/reset') 
       this.$router.push('/')
+    },
+    scrollToTop () {
+      document.querySelector('.navbar').scrollIntoView()
     }
   },
   computed: {
@@ -361,5 +367,12 @@ $breakpoint-mobile: 780px;
   }
 }
 
+.back-to-top {
+  bottom: -150px;
+  margin: auto;
+  width: 150px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, .5);
+}
 
 </style>
