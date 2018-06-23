@@ -45,6 +45,15 @@ const statsMixin = {
   mostUsedLabelCount () {
     return stats.getMostUsedLabelCount(this.issues, this.$store.state.repository.labels)
   },
+  mostActiveCreator () {
+    const author = this.$store.state.repository.issueAuthors.find((author) => {
+      return author.id === stats.getAuthorCount(this.issues, this.$store.state.repository.issueAuthors)[0].id
+    })
+    return author
+  },
+  mostActiveCreatorCount () {
+    return stats.getAuthorCount(this.issues, this.$store.state.repository.issueAuthors)[0].count
+  },
  },
 }
 

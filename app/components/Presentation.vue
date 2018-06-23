@@ -36,10 +36,15 @@
         p.info-content There are {{ labelCount }} labels of which only {{ usedLabelsCount }} are being used. The label that has been assigned to the most issues is 
           label.tag(:style='{"background-color": "#" + mostUsedLabel.color}') {{ mostUsedLabel.name }}  
           | which has been used {{ mostUsedLabelCount }} times.
+      .info-block
+        h2.title Issue Creators
+        p.info-content All the issues have been created by {{ issueAuthorCount }} different people. The most issues have been opend by 
+          a(:href='mostActiveCreator.html_url') {{ mostActiveCreator.login}}
+          |  for a total of {{ mostActiveCreatorCount }} issues.
     .blocker
     .explore
       h2.title.has-text-light If you want to explore the dataset more head to the playground!
-      router-link(to='/').button.is-rounded Go to Playground
+      .button.is-rounded(@click='gotoPlayground()') Go to Playground
 </template>
 
 <script>
@@ -169,6 +174,12 @@ export default {
                 method: splitter.label.splitLabel,
                 args: this.$store.state.repository.labels,
               })
+            } else if (i === 7) {
+              this.$store.commit('settings/addFilter', {
+                type: 'filterAuthor',
+                method: filters.author.filterAuthor,
+                args: [this.mostActiveCreator.id],
+              })
             }
           }
 
@@ -178,6 +189,12 @@ export default {
         }
       })
 
+    }
+  },
+  methods: {
+    gotoPlayground () {
+      this.$store.commit('settings/reset') 
+      this.$router.push('/')
     }
   },
   computed: {
@@ -204,6 +221,9 @@ export default {
     },
     openPullRequestCount () {
       return filters.state.filterState(filters.pullRequest.filterPullRequest(this.initialIssues, 'true'), 'open').length  
+    },
+    issueAuthorCount () {
+      return this.$store.state.repository.issueAuthors.length
     },
   },
   components: {
