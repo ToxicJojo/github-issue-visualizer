@@ -1,9 +1,9 @@
 <template lang='pug'>
   footer.has-text-grey-lighter
     p.is-flex Made with
-      b-icon.i(icon='heart') 
+      b-icon.footer-icon(icon='heart') 
       | and
-      b-icon.i(icon='code-tags')
+      b-icon.footer-icon(icon='code-tags')
       | by&nbsp;
       a(href='https://johannesthiel.me').has-text-light.has-text-weight-semibold Johannes Thiel
 
@@ -32,8 +32,9 @@ footer {
   background-color: #212121;
 }
 
-.i {
+.footer-icon {
   margin: 0px 5px;
+  color: #852d91;
 }
 
 </style>
