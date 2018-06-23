@@ -1,14 +1,15 @@
 <template lang='pug'>
   .issue-graph
-    .issue-tooltip(v-if='selectedIssue' :style='tooltipStyle' @click='showIssueOnGithub(selectedIssue)')
-      .row
-        img.avatar(:src='selectedIssue.user.avatar_url')
-        span {{ selectedIssue.title}}
-      .tags
-        b-tag(v-for='label in selectedIssue.labels' :style='{ backgroundColor: "#" + label.color }') {{ label.name }}
+    transition(name='fade')
+      .issue-tooltip(v-if='selectedIssue' :style='tooltipStyle' @click='showIssueOnGithub(selectedIssue)')
+        .row
+          img.avatar(:src='selectedIssue.user.avatar_url')
+          span {{ selectedIssue.title}}
+        .tags
+          b-tag(v-for='label in selectedIssue.labels' :style='{ backgroundColor: "#" + label.color }') {{ label.name }}
     svg(@click='hideIssueInfo')
       g
-        circle(v-for='issue in computedIssues' r='5' :cx='issue.x' :cy='issue.y' :stroke-width='issue.strokeWidth' :stroke='issue.strokeColor' :fill='issueColor(issue)' :r='issue.radius' @click.stop='showIssueInfo($event, issue)')
+        circle(v-for='issue in computedIssues' r='5' :cx='issue.x' :cy='issue.y' :fill-opacity='issue.opacity' :stroke-width='issue.strokeWidth' :stroke='issue.strokeColor' :fill='issueColor(issue)' :r='issue.radius' @click.stop='showIssueInfo($event, issue)')
 </template>
 
 <script>
@@ -43,6 +44,7 @@ export default {
 
       if (this.$store.state.settings.refresh) {
         this.updateNodeStatus()
+        this.hideIssueInfo()
         forceGraph.refreshAlpha(.5)
         this.$store.commit('settings/setRefresh', false)
         this.$store.commit('repository/setComputedIssues', this.issues)
@@ -106,7 +108,7 @@ export default {
         markedIssue.issue.strokeWidth = '3'
         markedIssue.issue.strokeColor = markedIssue.color
       })
-
+      
       const spliter = this.$store.state.settings.splitter
       if (spliter.method) {
         const splitIssues = spliter.method(this.issues, spliter.args)
@@ -145,13 +147,27 @@ export default {
       }
       return radiusSettings.default
     },
-    showIssueInfo (e, issue) {
+    showIssueInfo (e, selectedIssue) {
+      // To highlight the selected issue reduce the opacity of all
+      // other issues.
+      this.issues = this.issues.map((issue) => {
+        issue.opacity = .5
+        return issue
+      })
+      // The selected issues keeps it opacity.
+      selectedIssue.opacity = 1
+
       this.tooltipPosition.x = e.clientX
       this.tooltipPosition.y = e.clientY
-      this.selectedIssue = issue
+      this.selectedIssue = selectedIssue
     },
     hideIssueInfo (issue) {
       this.selectedIssue = null
+      // Reset opacity for all issues.
+      this.issues = this.issues.map((issue) => {
+        issue.opacity = 1
+        return issue
+      })
     },
     showIssueOnGithub (issue) {
       window.open(issue.html_url, '_blank')
@@ -163,7 +179,6 @@ export default {
       const height = svgElement.clientHeight
 
       const radiusScaleFactor = Math.min((width / 1000), 1)
-      console.log(radiusScaleFactor)   
 
       this.$store.commit('settings/updateDefaultRadius', 10 * radiusScaleFactor)
     }
@@ -189,21 +204,24 @@ export default {
 svg {
   width: 100%;
   height: calc(100vh - 200px);
-  //border: 1px solid black;
+}
+
+circle {
+  transition: fill-opacity .3s;
 }
 
 .issue-graph {
-  //margin: 20px;
   flex-grow: 1;
 }
 
 .issue-tooltip {
   position: fixed;
-  cursor: pointer;
-  background-color: #F2F2F2;
   border-radius: 8px;
   border-top: 8px solid;
   padding: 8px;
+  background-color: white;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 0 ,0 ,0.19), 0 6px 6px rgba(0 ,0 ,0 ,0.23);
 }
 
 .avatar {
