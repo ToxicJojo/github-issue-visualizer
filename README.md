@@ -2,6 +2,9 @@
 
 Visualize issues of any github repo.
 
+## Demo
+
+You can find a demo [here](https://github-issue-vizualiser.netlify.com/presentation)
 
 ## Built With
 
