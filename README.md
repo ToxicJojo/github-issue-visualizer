@@ -2,9 +2,11 @@
 
 Visualize issues of any github repo.
 
+![screenshot](https://johannesthiel.me/img/issueVisualizer.png)
+
 ## Demo
 
-You can find a demo [here](https://github-issue-vizualiser.netlify.com/presentation)
+You can find a demo [here](https://github-issue-vizualiser.netlify.com/)
 
 ## Built With
 
