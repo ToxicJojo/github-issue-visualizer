@@ -13,12 +13,12 @@ const router = new Router({
     {
       path: '/',
       name: 'index',
-      component: Playground,
+      component: Presentation,
     },
     {
-      path: '/presentation',
+      path: '/playground',
       name: 'presentation',
-      component: Presentation,
+      component: Playground,
     },
   ]
 })

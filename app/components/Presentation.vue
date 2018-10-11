@@ -74,11 +74,9 @@ export default {
     const infoBlocks = document.querySelectorAll('.info-block');
 
     const containerTop = document.querySelector('.repo-info').getBoundingClientRect().top
-    console.log(containerTop)
 
     const firstBlockDistanceTop = infoBlocks[0].getBoundingClientRect().top
     const firstBlockHeight = infoBlocks[0].getBoundingClientRect().height
-    console.log(firstBlockDistanceTop)
 
 
     window.onscroll = (e) => {
@@ -90,7 +88,6 @@ export default {
 
         const previousBlockTop = i > 0 ? infoBlocks[i - 1].getBoundingClientRect().top : -1
 
-        //if (distanceToTop > 180 && distanceToTop < 400) {
         if (previousBlockTop <= 0 && distanceToTop > 0) {
 
           if (!block.classList.contains('active')) {
@@ -197,7 +194,7 @@ export default {
   methods: {
     gotoPlayground () {
       this.$store.commit('settings/reset') 
-      this.$router.push('/')
+      this.$router.push('/playground')
     },
     scrollToTop () {
       document.querySelector('.navbar').scrollIntoView()
