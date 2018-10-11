@@ -23,10 +23,12 @@ export default {
 
 <style lang="scss" scoped>
 
+$footer-height: 60px;
+
 footer {
   display: flex;
   justify-content: center;
-
+  height: $footer-height;
   z-index: 1;
   padding: 18px;
   background-color: #212121;

@@ -45,6 +45,8 @@ export default {
 
 .stats {
   z-index: 1;
+  background-color: white;
+  width: 100%;
 }
 
 .panel-block {

@@ -5,9 +5,11 @@
       Settings.hidden(:class='{ shown: showSettings}')
       Stats.hidden(:class='{ shown: showStats}')
     .mobile-controls
-      .show-settings(@click='showSettings = !showSettings' :class='{ inactive: showStats }')
+      .show-settings(@click='activateSettings' :class='{ active: showSettings }')
+        | Settings
         b-icon(icon='settings')
-      .show-stats(@click='showStats = !showStats' :class='{ inactive: showSettings }')
+      .show-stats(@click='activateStats' :class='{ active: showStats }')
+        | Stats
         b-icon(icon='information-outline')
 
 </template>
@@ -19,12 +21,22 @@ import Stats from './stats/Stats.vue'
 
 
 export default {
-  name: 'App',
+  name: 'Playground',
   data () {
     return {
       showSettings: false,
       showStats: false,
     }
+  },
+  methods: {
+    activateSettings () {
+      this.showSettings = !this.showSettings
+      this.showStats = false
+    },
+    activateStats () {
+      this.showStats = !this.showStats 
+      this.showSettings = false
+    },
   },
   props: ['initialIssues'],
   components: {
@@ -37,6 +49,7 @@ export default {
 
 <style lang="scss" scoped>
 
+$footer-height: 60px;
 $breakpoint-mobile: 780px;
 
 @mixin mobile {
@@ -55,14 +68,11 @@ $breakpoint-mobile: 780px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  height: calc(100vh - 100px - 60px);
-  //padding: 16px;
-  //position: absolute;
+  height: calc(100vh - 100px - #{$footer-height});
 
   @include mobile () {
     position: absolute;
     width: 100%;
-    //transform: translateY(500px);
   }
 }
 
@@ -70,7 +80,7 @@ $breakpoint-mobile: 780px;
   @include mobile () {
     position: absolute;
     top: 0px;
-    transform: translateY(calc(100vh - 100px - 60px));
+    transform: translateY(calc(100vh - 100px - #{$footer-height}));
     margin-bottom: 0px;
     transition: transform 1s;
   }
@@ -84,25 +94,28 @@ $breakpoint-mobile: 780px;
 
 .show-settings, .show-stats {
   display: none;
-
+  width: 50%;
   border: 1px solid rgb(74, 74, 74);
-  border-right: none;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  padding: 8px;
+  padding: 12px;
 
   @include mobile () {
-    display: block;
-    &.inactive {
-      display: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &.active {
+      background-color: rgba(121, 87, 213, 1);
+      color: white;
     }
   }
 }
 
 .mobile-controls {
-  z-index: 1;
+  z-index: 5;
+  display: flex;
+  width: 100%;
   position: absolute;
-  right: 0px;
+  bottom: $footer-height;
+  background-color: white;
 }
 
 </style>
